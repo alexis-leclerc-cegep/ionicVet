@@ -8,7 +8,7 @@
 
 <ion-content>
   <ion-card>
-    <ion-button color="primary">Ajouter client</ion-button>
+    <ion-button color="primary" (click)="appelerAjouterClient()">Ajouter client</ion-button>
   </ion-card>
     *ngFor="let client of listeClients"
     <ion-card (click)="naviguerClient(client.id)">

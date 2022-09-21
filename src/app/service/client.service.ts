@@ -28,4 +28,16 @@ export class ClientService {
     return this.listeClients;
   }
 
+  ajouterClient()
+  {
+    this.httpClient.post(this.API_gestionClients+"?action=ajouterClient", this.unClient).subscribe(
+      (response : any) => {
+        this.unClient = response as Client;
+      },
+      (error : any) => {
+        console.log(error);
+      }
+    );
+  }
+
 }
