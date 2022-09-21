@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajouter un client</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-input type="text" placeholder="Nom" [(ngModel)]="client.nom"></ion-input>
+    <ion-input type="text" placeholder="Prénom" [(ngModel)]="client.prenom"></ion-input>
+    <ion-input type="text" placeholder="Téléphone" [(ngModel)]="client.telephone"></ion-input>
+    <ion-button color="primary" (click)="ajouterClient()">Ajouter</ion-button>
+  </ion-card>
+</ion-content>

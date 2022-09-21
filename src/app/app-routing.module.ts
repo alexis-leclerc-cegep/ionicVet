@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'ajouter-client',
+    loadChildren: () => import('./ajouter-client/ajouter-client.module').then( m => m.AjouterClientPageModule)
+  },
+  {
+    path: 'ajouter-client',
+    loadChildren: () => import('./modal/ajouter-client/ajouter-client.module').then( m => m.AjouterClientPageModule)
+  },
 ];
 
 @NgModule({
