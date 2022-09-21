@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Client } from '../model/client';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public client : Client) {}
 
+  naviguerClient(id : number){
+
+  }
 }

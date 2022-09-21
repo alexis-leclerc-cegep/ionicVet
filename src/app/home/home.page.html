@@ -1,20 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Clinique Vétérinaire
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ion-card>
+    <ion-button color="primary">Ajouter client</ion-button>
+  </ion-card>
+    *ngFor="let client of listeClients"
+    <ion-card (click)="naviguerClient(client.id)">
+      <ion-item>Prénom : {{client.prenom}}</ion-item>
+      <ion-item>Nom : {{client.nom}}</ion-item>
+      <ion-item>Téléphone : {{client.telephone}}</ion-item>
+      <ion-item>Latitude : {{client.latitude}}</ion-item>
+      <ion-item>Longitude : {{client.longitude}}</ion-item>
+    </ion-card>
 </ion-content>

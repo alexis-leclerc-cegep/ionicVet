@@ -12,7 +12,7 @@ export class AjouterClientPage implements OnInit {
 
   constructor(public router : Router) {
 
-   }
+  }
 
   ngOnInit() {
   }
