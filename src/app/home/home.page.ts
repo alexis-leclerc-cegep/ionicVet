@@ -12,16 +12,23 @@ import { ClientService } from '../service/client.service';
 export class HomePage {
   modal : any;
   retour : any;
+  listeClients : Array<Client>;
+  //unClient : Client;
 
-  constructor(public client : Client,
-              public modalController : ModalController,
+  constructor(              public modalController : ModalController,
               public toastController : ToastController,
-              public clientService : ClientService) {}
+              public clientService : ClientService) {
+              //  this.unClient = new Client(0, "Dupont", "Jean", "", 0, 0);
+    this.listeClients = Array<Client>();
+    this.listeClients.push(new Client(0, "Dupont", "Jean", "", 0, 0));
+              }
 
   ngOnInit() {
   }
 
-    async appelerModalAjouterBien() {
+  naviguerClient(id : number){}
+
+  async appelerModalAjouterClient() {
     this.modal = await this.modalController.create({component:AjouterClientPage});
     this.modal.present();
     this.modal.onDidDismiss().then(retour => {
@@ -33,6 +40,7 @@ export class HomePage {
       else this.afficherToast('Ajout',retour.role);
     })
   }
+
   async afficherToast (action:string, resultat:string) {
     switch (action) {
       case 'Ajout':

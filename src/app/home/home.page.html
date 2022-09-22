@@ -8,14 +8,14 @@
 
 <ion-content>
   <ion-card>
-    <ion-button color="primary" (click)="appelerAjouterClient()">Ajouter client</ion-button>
+    <ion-button color="primary" (click)="appelerModalAjouterClient()">Ajouter client</ion-button>
   </ion-card>
-    *ngFor="let client of listeClients"
-    <ion-card (click)="naviguerClient(client.id)">
-      <ion-item>Prénom : {{client.prenom}}</ion-item>
-      <ion-item>Nom : {{client.nom}}</ion-item>
-      <ion-item>Téléphone : {{client.telephone}}</ion-item>
-      <ion-item>Latitude : {{client.latitude}}</ion-item>
-      <ion-item>Longitude : {{client.longitude}}</ion-item>
-    </ion-card>
+    <ion-item *ngFor="let unClient of listeClients">    
+  <ion-card (click)="naviguerClient(unClient.id)">
+      <ion-item>Prénom : {{unClient.prenom}}</ion-item>
+      <ion-item>Nom : {{unClient.nom}}</ion-item>
+      <ion-item>Téléphone : {{unClient.telephone}}</ion-item>
+      <ion-item>Latitude : {{unClient.latitude}}</ion-item>
+      <ion-item>Longitude : {{unClient.longitude}}</ion-item>
+    </ion-card></ion-item>
 </ion-content>

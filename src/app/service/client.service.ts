@@ -9,9 +9,9 @@ export class ClientService {
   listeClients: Array<Client>;
   unClient : Client;
 
-  API_gestionClients : string="http://localhost:3000/api/api_gestionClients";
+  API_gestionClients : string="http://localhost:3000/api/api_gestionClients.php";
 
-  constructor(private httpClient : HttpClient) { 
+  constructor(public httpClient : HttpClient) { 
     this.listeClients = new Array<Client>();
     this.unClient = new Client(0, "", "", "", 0, 0);
   }
@@ -28,9 +28,9 @@ export class ClientService {
     return this.listeClients;
   }
 
-  ajouterClient()
+  ajouterClient(unClient:Client)
   {
-    this.httpClient.post(this.API_gestionClients+"?action=ajouterClient", this.unClient).subscribe(
+    this.httpClient.post(this.API_gestionClients+"?action=ajouterClient", unClient).subscribe(
       (response : any) => {
         this.unClient = response as Client;
       },
