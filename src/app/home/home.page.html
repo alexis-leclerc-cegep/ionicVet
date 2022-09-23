@@ -1,21 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Clinique Vétérinaire
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">This is the menu content.</ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    Tap the button in the toolbar to open the menu.
+  </ion-content>
+</div>
 
 <ion-content>
   <ion-card>
     <ion-button color="primary" (click)="appelerModalAjouterClient()">Ajouter client</ion-button>
   </ion-card>
-    <ion-item *ngFor="let unClient of listeClients">    
-  <ion-card (click)="naviguerClient(unClient.id)">
-      <ion-item>Prénom : {{unClient.prenom}}</ion-item>
-      <ion-item>Nom : {{unClient.nom}}</ion-item>
-      <ion-item>Téléphone : {{unClient.telephone}}</ion-item>
-      <ion-item>Latitude : {{unClient.latitude}}</ion-item>
-      <ion-item>Longitude : {{unClient.longitude}}</ion-item>
-    </ion-card></ion-item>
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let unClient of listeClients">    
+      <ion-item slot="header">
+        <ion-label>{{unClient.prenom}} {{unClient.nom}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Téléphone : {{unClient.telephone}}
+      </div>
+      <div class="ion-padding" slot="content">
+        Coordonnées : {{unClient.geolocalisation}}
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>

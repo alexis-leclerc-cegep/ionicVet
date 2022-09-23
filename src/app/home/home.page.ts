@@ -13,18 +13,21 @@ export class HomePage {
   modal : any;
   retour : any;
   listeClients : Array<Client>;
-  //unClient : Client;
+  unClient : Client;
 
-  constructor(              public modalController : ModalController,
-              public toastController : ToastController,
-              public clientService : ClientService) {
-              //  this.unClient = new Client(0, "Dupont", "Jean", "", 0, 0);
-    this.listeClients = Array<Client>();
-    this.listeClients.push(new Client(0, "Dupont", "Jean", "", 0, 0));
-              }
+  constructor(              
+    public modalController : ModalController,
+    public toastController : ToastController,
+    public clientService : ClientService) {
+      this.listeClients = Array<Client>();
+      this.listeClients = this.clientService.obtenirLesClients();
+    }
 
-  ngOnInit() {
-  }
+    ionViewWillEnter() {
+      this.listeClients = this.clientService.obtenirLesClients();
+      //console.log(this.clientService.obtenirLesClients());
+    }
+
 
   naviguerClient(id : number){}
 
@@ -34,6 +37,7 @@ export class HomePage {
     this.modal.onDidDismiss().then(retour => {
       console.log(retour);
       if (retour.role === 'Succès') {
+        
         this.clientService.ajouterClient(retour.data);
         this.afficherToast('Ajout',retour.role);
       }

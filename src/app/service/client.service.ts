@@ -9,17 +9,18 @@ export class ClientService {
   listeClients: Array<Client>;
   unClient : Client;
 
-  API_gestionClients : string="http://localhost:3000/api/api_gestionClients.php";
+  API_gestionClients : string="http://localhost:8080/api/api_gestionClients.php";
 
   constructor(public httpClient : HttpClient) { 
     this.listeClients = new Array<Client>();
-    this.unClient = new Client(0, "", "", "", 0, 0);
+    this.unClient = new Client(0, "", "", "", "");
   }
 
   obtenirLesClients(): Array<Client>{
     this.httpClient.get(this.API_gestionClients+"?action=obtenirLesClients").subscribe(
       (response : any) => {
         this.listeClients = response as Array<Client>;
+        console.table(this.listeClients);
       },
       (error : any) => {
         console.log(error);

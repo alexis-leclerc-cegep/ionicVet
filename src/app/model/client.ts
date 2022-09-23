@@ -7,15 +7,13 @@ export class Client {
     public prenom : string;
     public nom : string;
     public telephone : string;
-    public latitude : number;
-    public longitude : number;
+    public geolocalisation: string;
 
-    constructor(id : number, prenom : string, nom : string, telephone : string, latitude : number, longitude : number){
+    constructor(id : number, prenom : string, nom : string, telephone : string, geolocalisation:string){
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
         this.telephone = telephone;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.geolocalisation = this.geolocalisation;
     }
 }

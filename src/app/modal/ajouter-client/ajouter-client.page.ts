@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./ajouter-client.page.scss'],
 })
 export class AjouterClientPage implements OnInit {
-  client : Client = new Client(0, "", "", "", 0, 0);
+  client : Client = new Client(0, "", "", "", "");
 
   constructor(public router : Router) {
 
