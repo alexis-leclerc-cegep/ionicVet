@@ -13,11 +13,12 @@ export class AjouterClientPage implements OnInit {
 
   constructor(public router : Router, public clientService : ClientService) { }
 
-  }
+  ngOnInit(): void { }
 
-  ngOnInit() {
-  }
 
-  ajouterClient(){}
+
+  ajouterClient(){
+    alert("chepo");
+  }
 
 }
