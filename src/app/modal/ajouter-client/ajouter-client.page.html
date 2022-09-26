@@ -6,9 +6,9 @@
 
 <ion-content>
   <ion-card (keyup.enter)="ajouterClient()">
-    <ion-input type="text" placeholder="Nom" [(ngModel)]="client.nom"></ion-input>
-    <ion-input type="text" placeholder="Prénom" [(ngModel)]="client.prenom"></ion-input>
-    <ion-input type="tel" placeholder="Téléphone" [(ngModel)]="client.telephone" simpleMask="999-999-9999" [clearIfNotMatch]="true"></ion-input>
+    <ion-input type="text" placeholder="Prénom" value="Testing" [(ngModel)]="client.prenom" style="text-transform: capitalize;"></ion-input>
+    <ion-input type="text" placeholder="Nom" value="testeur" [(ngModel)]="client.nom" style="text-transform: capitalize"></ion-input>
+    <ion-input type="tel" placeholder="Téléphone"  value="444-444-4444"[(ngModel)]="client.telephone" simpleMask="999-999-9999" [clearIfNotMatch]="true"></ion-input>
     <ion-button color="primary" (click)="ajouterClient()">Ajouter</ion-button>
   </ion-card>
 </ion-content>

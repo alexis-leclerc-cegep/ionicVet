@@ -9,7 +9,7 @@ export class ClientService {
   listeClients: Array<Client>;
   unClient: Client;
 
-  apiGestionClients: string='http://localhost:8080/api/api_gestionClients.php';
+  apiGestionClients = 'http://localhost:8080/api/api_gestionClients.php';
 
   constructor(public httpClient: HttpClient) {
     this.listeClients = new Array<Client>();
@@ -31,9 +31,10 @@ export class ClientService {
 
   ajouterClient(unClient: Client): boolean
   {
-    this.httpClient.post(this.apiGestionClients+'?action=ajouterClient', unClient).subscribe(
+    console.log(unClient.nom);
+    this.httpClient.get(this.apiGestionClients+'?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
+      unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation).subscribe(
       (response: any) => {
-        this.unClient = response as Client;
         return true;
       },
       (error: any) => {
