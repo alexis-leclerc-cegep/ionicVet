@@ -2,22 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 import { AjouterClientPageRoutingModule } from './ajouter-client-routing.module';
 
 import { AjouterClientPage } from './ajouter-client.page';
+import {SimpleMaskModule} from "ngx-ion-simple-mask";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AjouterClientPageRoutingModule
+    AjouterClientPageRoutingModule,
+    SimpleMaskModule,
   ],
-  providers: [
-    Geolocation
-],
   declarations: [AjouterClientPage]
 })
 export class AjouterClientPageModule {}

@@ -10,12 +10,12 @@ import { ClientService } from '../service/client.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  modal : any;
-  retour : any;
-  listeClients : Array<Client>;
-  unClient : Client;
+  modal: any;
+  retour: any;
+  listeClients: Array<Client>;
+  unClient: Client;
 
-  constructor(              
+  constructor(
     public modalController : ModalController,
     public toastController : ToastController,
     public clientService : ClientService) {
@@ -29,7 +29,7 @@ export class HomePage {
     }
 
 
-  naviguerClient(id : number){}
+  naviguerClient(id: number){}
 
   async appelerModalAjouterClient() {
     this.modal = await this.modalController.create({component:AjouterClientPage});
@@ -37,27 +37,31 @@ export class HomePage {
     this.modal.onDidDismiss().then(retour => {
       console.log(retour);
       if (retour.role === 'Succès') {
-        
         this.clientService.ajouterClient(retour.data);
         this.afficherToast('Ajout',retour.role);
       }
-      else this.afficherToast('Ajout',retour.role);
-    })
+      else {
+        this.afficherToast('Ajout',retour.role);
+      }
+    });
   }
 
-  async afficherToast (action:string, resultat:string) {
+  async afficherToast(action: string, resultat: string) {
+    let texteSucces;
+    let texteEchec;
     switch (action) {
       case 'Ajout':
-        var texteSucces = "Bien personnel ajouté avec SUCCÈS";
-        var texteEchec = "Ajout du Bien Personnel a échoué";
+        texteSucces = 'Bien personnel ajouté avec SUCCÈS';
+        texteEchec = 'Ajout du Bien Personnel a échoué';
         break;
     }
+    let toast: any;
     switch (resultat) {
       case 'Succès':
-        var toast = await this.toastController.create({color:'success', duration:3000, message:texteSucces});
+        toast = await this.toastController.create({color:'success', duration:3000, message: texteSucces});
         break;
       case 'Échec':
-        var toast = await this.toastController.create({color:'danger', duration:2000, message:texteEchec});
+        toast = await this.toastController.create({color:'danger', duration:2000, message: texteEchec});
         break;
     }
     await toast.present();

@@ -5,10 +5,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card (keyup.enter)="ajouterClient()">
     <ion-input type="text" placeholder="Nom" [(ngModel)]="client.nom"></ion-input>
     <ion-input type="text" placeholder="Prénom" [(ngModel)]="client.prenom"></ion-input>
-    <ion-input type="text" placeholder="Téléphone" [(ngModel)]="client.telephone"></ion-input>
+    <ion-input type="tel" placeholder="Téléphone" [(ngModel)]="client.telephone" simpleMask="999-999-9999" [clearIfNotMatch]="true"></ion-input>
     <ion-button color="primary" (click)="ajouterClient()">Ajouter</ion-button>
   </ion-card>
 </ion-content>

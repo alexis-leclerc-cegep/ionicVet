@@ -29,6 +29,8 @@
     "@ionic/angular": "^6.1.9",
     "cordova-plugin-geolocation": "^4.1.0",
     "ionicons": "^6.0.3",
+    "ngx-ion-simple-mask": "^0.9.0",
+    "ngx-mask": "^14.2.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from '../../model/client';
 import { Router } from '@angular/router';
 import { ClientService } from '../../service/client.service';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {ModalController} from "@ionic/angular";
 
 @Component({
   selector: 'app-ajouter-client',
@@ -12,7 +13,10 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 export class AjouterClientPage implements OnInit {
   client: Client = new Client(0, '', '', '', '');
 
-  constructor(public router: Router, public clientService: ClientService, public geolocation: Geolocation) { }
+  constructor(public router: Router,
+              public clientService: ClientService,
+              public geolocation: Geolocation,
+              public modalController: ModalController) { }
 
   ngOnInit(): void { }
 
@@ -22,7 +26,7 @@ export class AjouterClientPage implements OnInit {
     await this.geolocation.getCurrentPosition().then((resp) => {
       this.client.geolocalisation = resp.coords.latitude + ', ' + resp.coords.longitude;
       this.clientService.ajouterClient(this.client);
-      this.router.navigate(['home']);
+      this.modalController.dismiss({role: 'Succès', data: this.client});
     }).catch((error) => {
       console.log('Error getting location', error);
     });
