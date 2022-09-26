@@ -37,16 +37,13 @@ export class HomePage {
     this.modal.onDidDismiss().then(retour => {
       console.log(retour);
       console.log(retour.data.role);
-      if (retour.data.role === 'Succès') {
-        const retourAjout: boolean = this.clientService.ajouterClient(retour.data);
         if(retour){
-          console.log('pas marcher');
-          retour.data.role = 'Échec';
-        }
-        else{
           console.log('marcher');
         }
-      }
+        else{
+          console.log('po marcher');
+          retour.data.role = 'Échec';
+        }
       console.log('role appeler toast : ' + retour.data.role);
       this.afficherToast('Ajout',retour.data.role);
     });
