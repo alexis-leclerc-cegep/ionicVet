@@ -36,14 +36,24 @@ export class HomePage {
     this.modal.present();
     this.modal.onDidDismiss().then(retour => {
       console.log(retour);
-      if (retour.role === 'Succès') {
-        this.clientService.ajouterClient(retour.data);
+      console.log(retour.data.role);
+      if (retour.data.role === 'Succès') {
+        const retourAjout: boolean = this.clientService.ajouterClient(retour.data);
+        if(retour){
+          console.log('pas marcher');
+          retour.data.role = 'Échec';
+        }
+        else{
+          console.log('marcher');
+        }
       }
-      this.afficherToast('Ajout',retour.role);
+      console.log('role appeler toast : ' + retour.data.role);
+      this.afficherToast('Ajout',retour.data.role);
     });
   }
 
   async afficherToast(action: string, resultat: string) {
+    console.log(resultat);
     let texteSucces;
     let texteEchec;
     switch (action) {
@@ -55,12 +65,15 @@ export class HomePage {
     let leMessage = '';
     switch (resultat) {
       case 'Succès':
+        console.log('Succès');
         leMessage = texteSucces;
         break;
       case 'Échec':
+        console.log('Échec');
         leMessage = texteEchec;
         break;
     }
+    console.log(leMessage);
     const toast = await this.toastController.create({color:'danger', duration:2000, message:leMessage});
     await toast.present();
   }
