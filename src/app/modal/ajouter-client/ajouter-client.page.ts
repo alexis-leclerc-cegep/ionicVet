@@ -3,7 +3,7 @@ import { Client } from '../../model/client';
 import { Router } from '@angular/router';
 import { ClientService } from '../../service/client.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {ModalController} from "@ionic/angular";
+import {ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-ajouter-client',
@@ -29,6 +29,7 @@ export class AjouterClientPage implements OnInit {
       this.modalController.dismiss({role: 'Succès', data: this.client});
     }).catch((error) => {
       console.log('Error getting location', error);
+      this.modalController.dismiss({role: 'Échec', data: this.client});
     });
     console.log(this.client);
   }

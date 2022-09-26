@@ -16,9 +16,9 @@ export class HomePage {
   unClient: Client;
 
   constructor(
-    public modalController : ModalController,
-    public toastController : ToastController,
-    public clientService : ClientService) {
+    public modalController: ModalController,
+    public toastController: ToastController,
+    public clientService: ClientService) {
       this.listeClients = Array<Client>();
       this.listeClients = this.clientService.obtenirLesClients();
     }
@@ -38,11 +38,8 @@ export class HomePage {
       console.log(retour);
       if (retour.role === 'Succès') {
         this.clientService.ajouterClient(retour.data);
-        this.afficherToast('Ajout',retour.role);
       }
-      else {
-        this.afficherToast('Ajout',retour.role);
-      }
+      this.afficherToast('Ajout',retour.role);
     });
   }
 
@@ -55,15 +52,16 @@ export class HomePage {
         texteEchec = 'Ajout du Bien Personnel a échoué';
         break;
     }
-    let toast: any;
+    let leMessage = '';
     switch (resultat) {
       case 'Succès':
-        toast = await this.toastController.create({color:'success', duration:3000, message: texteSucces});
+        leMessage = texteSucces;
         break;
       case 'Échec':
-        toast = await this.toastController.create({color:'danger', duration:2000, message: texteEchec});
+        leMessage = texteEchec;
         break;
     }
+    const toast = await this.toastController.create({color:'danger', duration:2000, message:leMessage});
     await toast.present();
   }
 }
