@@ -28,6 +28,7 @@ export class AjouterClientPage implements OnInit {
       this.client.prenom = this.client.prenom.toUpperCase();
       this.client.nom = this.client.nom.charAt(0).toUpperCase() + this.client.nom.slice(1);
       const retourAjout: boolean = this.clientService.ajouterClient(this.client);
+      console.log('le retour est : ' + retourAjout);
       this.modalController.dismiss({role: 'Succès', data: this.client, retour: retourAjout});
     }).catch((error) => {
       console.log('Error getting location', error);

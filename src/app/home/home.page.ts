@@ -35,17 +35,17 @@ export class HomePage {
     this.modal = await this.modalController.create({component:AjouterClientPage});
     this.modal.present();
     this.modal.onDidDismiss().then(retour => {
-      console.log(retour);
-      console.log(retour.data.role);
-        if(retour){
+        if(retour.data.retour){
           console.log('marcher');
+          //this.listeClients = this.clientService.obtenirLesClients();
+          this.ionViewWillEnter();
+          this.afficherToast('Ajout', 'Succès');
         }
         else{
           console.log('po marcher');
-          retour.data.role = 'Échec';
+          this.afficherToast('Ajout', 'Échec');
         }
       console.log('role appeler toast : ' + retour.data.role);
-      this.afficherToast('Ajout',retour.data.role);
     });
   }
 
