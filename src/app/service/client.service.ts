@@ -16,8 +16,8 @@ export class ClientService {
     this.unClient = new Client(0, '', '', '', '');
   }
 
-  obtenirLesClients(): Array<Client>{
-    this.httpClient.get(this.apiGestionClients+'?action=obtenirLesClients').subscribe(
+  obtenirLesClients(): Array<Client> {
+    this.httpClient.get(this.apiGestionClients + '?action=obtenirLesClients').subscribe(
       (response: any) => {
         this.listeClients = response as Array<Client>;
         console.table(this.listeClients);
@@ -29,24 +29,25 @@ export class ClientService {
     return this.listeClients;
   }
 
-  ajouterClient(unClient: Client): boolean
-  {
-    console.log(unClient.nom);
-    console.log(this.apiGestionClients+'?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
-      unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation);
-    this.httpClient.get(this.apiGestionClients+'?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
-      unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation).subscribe(
-    (response: any) => {
-      if(response.reponse.includes('working')) {
-        console.log('Le client a été ajouté');
-        return true;
-      } else {
-        console.log('Le client n\'a pas été ajouté');
-        return false;
-      }
+  async ajouterClient(unClient: Client): Promise<boolean> {
+    {
+      console.log(unClient.nom);
+      console.log(this.apiGestionClients + '?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
+        unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation);
+      this.httpClient.get(this.apiGestionClients + '?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
+        unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation).subscribe(
+        (response: any) => {
+          if (response.reponse.includes('working')) {
+            console.log('Le client a été ajouté');
+            return true;
+          } else {
+            console.log('Le client n\'a pas été ajouté');
+            return false;
+          }
+        }
+      );
+      return false;
     }
-    );
-    return false;
-  }
 
+  }
 }

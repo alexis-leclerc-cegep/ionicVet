@@ -35,43 +35,20 @@ export class HomePage {
     this.modal = await this.modalController.create({component:AjouterClientPage});
     this.modal.present();
     this.modal.onDidDismiss().then(retour => {
-        if(retour.data.retour){
-          console.log('marcher');
-          //this.listeClients = this.clientService.obtenirLesClients();
-          this.ionViewWillEnter();
-          this.afficherToast('Ajout', 'Succès');
-        }
-        else{
-          console.log('po marcher');
-          this.afficherToast('Ajout', 'Échec');
-        }
-      console.log('role appeler toast : ' + retour.data.role);
+      if (retour.role === 'working') {
+        this.clientService.ajouterClient(retour.data);
+        //this.listeClients = this.clientService.obtenirLesClients();
+        this.ionViewWillEnter();
+        this.afficherToast('Ajout fait avec succès', 'primary');
+      }
+      else{
+        this.afficherToast('Ajout échoué', 'danger', 3000);
+      }
     });
   }
 
-  async afficherToast(action: string, resultat: string) {
-    console.log(resultat);
-    let texteSucces;
-    let texteEchec;
-    switch (action) {
-      case 'Ajout':
-        texteSucces = 'Bien personnel ajouté avec SUCCÈS';
-        texteEchec = 'Ajout du Bien Personnel a échoué';
-        break;
-    }
-    let leMessage = '';
-    switch (resultat) {
-      case 'Succès':
-        console.log('Succès');
-        leMessage = texteSucces;
-        break;
-      case 'Échec':
-        console.log('Échec');
-        leMessage = texteEchec;
-        break;
-    }
-    console.log(leMessage);
-    const toast = await this.toastController.create({color:'danger', duration:2000, message:leMessage});
+  async afficherToast(leMessage: string, laCouleur: string = 'primary', leTemps: number = 2000) {
+    const toast = await this.toastController.create({color: laCouleur, duration:leTemps, message: leMessage});
     await toast.present();
   }
 }

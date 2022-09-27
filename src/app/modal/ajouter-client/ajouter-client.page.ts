@@ -27,9 +27,7 @@ export class AjouterClientPage implements OnInit {
       this.client.geolocalisation = resp.coords.latitude + ', ' + resp.coords.longitude;
       this.client.prenom = this.client.prenom.toUpperCase();
       this.client.nom = this.client.nom.charAt(0).toUpperCase() + this.client.nom.slice(1);
-      const retourAjout: boolean = this.clientService.ajouterClient(this.client);
-      console.log('le retour est : ' + retourAjout);
-      this.modalController.dismiss({role: 'Succès', data: this.client, retour: retourAjout});
+      this.modalController.dismiss(this.client, 'working');
     }).catch((error) => {
       console.log('Error getting location', error);
       this.modalController.dismiss({role: 'Échec', data: this.client});
