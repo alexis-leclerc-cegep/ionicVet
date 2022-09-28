@@ -15,6 +15,14 @@ const routes: Routes = [
     path: 'ajouter-client',
     loadChildren: () => import('./modal/ajouter-client/ajouter-client.module').then( m => m.AjouterClientPageModule)
   },
+  {
+    path: 'ajouter-animal',
+    loadChildren: () => import('./ajouter-animal/ajouter-animal.module').then( m => m.AjouterAnimalPageModule)
+  },
+  {
+    path: 'liste-animaux',
+    loadChildren: () => import('./liste-animaux/liste-animaux.module').then(m => m.ListeAnimauxPageModule)
+  },
 ];
 
 @NgModule({

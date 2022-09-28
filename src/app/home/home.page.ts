@@ -28,8 +28,10 @@ export class HomePage {
       //console.log(this.clientService.obtenirLesClients());
     }
 
+  appelerListeAnimaux(unClient: Client){}
+  appelerAjouterAnimal(unClient: Client){}
 
-  naviguerClient(id: number){}
+
 
   async appelerModalAjouterClient() {
     this.modal = await this.modalController.create({component:AjouterClientPage});
