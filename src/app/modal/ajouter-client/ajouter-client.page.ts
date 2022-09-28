@@ -11,7 +11,7 @@ import {ModalController} from '@ionic/angular';
   styleUrls: ['./ajouter-client.page.scss'],
 })
 export class AjouterClientPage implements OnInit {
-  client: Client = new Client(0, '', '', '', '');
+  unClient: Client = new Client(0, '', '', '', '');
 
   constructor(public router: Router,
               public clientService: ClientService,
@@ -24,15 +24,15 @@ export class AjouterClientPage implements OnInit {
 
   async ajouterClient(){
     await this.geolocation.getCurrentPosition().then((resp) => {
-      this.client.geolocalisation = resp.coords.latitude + ', ' + resp.coords.longitude;
-      this.client.prenom = this.client.prenom.toUpperCase();
-      this.client.nom = this.client.nom.charAt(0).toUpperCase() + this.client.nom.slice(1);
-      this.modalController.dismiss(this.client, 'working');
+      this.unClient.geolocalisation = resp.coords.latitude + ', ' + resp.coords.longitude;
+      this.unClient.prenom = this.unClient.prenom.charAt(0).toUpperCase() + this.unClient.prenom.slice(1);
+      this.unClient.nom = this.unClient.nom.charAt(0).toUpperCase() + this.unClient.nom.slice(1);
+      this.modalController.dismiss(this.unClient, 'working');
     }).catch((error) => {
       console.log('Error getting location', error);
-      this.modalController.dismiss({role: 'Échec', data: this.client});
+      this.modalController.dismiss({role: 'Échec', data: this.unClient});
     });
-    console.log(this.client);
+    console.log(this.unClient);
   }
 
 }

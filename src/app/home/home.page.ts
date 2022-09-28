@@ -3,6 +3,7 @@ import { Client } from '../model/client';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AjouterClientPage } from '../modal/ajouter-client/ajouter-client.page';
 import { ClientService } from '../service/client.service';
+import {ModifierClientPage} from "../modal/modifier-client/modifier-client.page";
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,24 @@ export class HomePage {
   appelerListeAnimaux(unClient: Client){}
   appelerAjouterAnimal(unClient: Client){}
 
-
+  async appelerModalModifierClient(unClient: Client) {
+    const clientModal: Client = unClient;
+    this.modal = await this.modalController.create(
+      {component:ModifierClientPage,
+       componentProps:{unClient: unClient}
+      });
+    this.modal.present();
+    this.modal.onDidDismiss().then(retour => {
+      if (retour.role === 'working') {
+       // this.clientService.modifierClient(retour.data);
+        this.ionViewWillEnter();
+        this.afficherToast('Modification faite avec succès', 'primary');
+      }
+      else{
+        this.afficherToast('Modification échouée', 'danger', 3000);
+      }
+    });
+  }
 
   async appelerModalAjouterClient() {
     this.modal = await this.modalController.create({component:AjouterClientPage});
