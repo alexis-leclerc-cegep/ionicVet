@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'liste-animaux',
     loadChildren: () => import('./liste-animaux/liste-animaux.module').then(m => m.ListeAnimauxPageModule)
   },
+  {
+    path: 'ajouter-animal',
+    loadChildren: () => import('./modal/ajouter-animal/ajouter-animal.module').then( m => m.AjouterAnimalPageModule)
+  },
 ];
 
 @NgModule({
