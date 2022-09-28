@@ -28,8 +28,28 @@ export class ClientService {
     );
     return this.listeClients;
   }
+  async modifierClient(unClient: Client) {
+    {
+      console.log(this.apiGestionClients + '?action=modifierClient&id=' + unClient.id + '&nom=' + unClient.nom + '&prenom=' +
+        unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation);
+      this.httpClient.get(this.apiGestionClients + '?action=modifierClient&id=' + unClient.id + '&nom=' + unClient.nom + '&prenom=' +
+        unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation).subscribe(
+        (response: any) => {
+          if (response.reponse.includes('working')) {
+            console.log('Le client a été modifié');
+            return true;
+          } else {
+            console.log('Le client n\'a pas été modifié');
+            return false;
+          }
+        }
+      );
+      return false;
+    }
 
-  async ajouterClient(unClient: Client): Promise<boolean> {
+  }
+
+  async ajouterClient(unClient: Client) {
     {
       console.log(unClient.nom);
       console.log(this.apiGestionClients + '?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +

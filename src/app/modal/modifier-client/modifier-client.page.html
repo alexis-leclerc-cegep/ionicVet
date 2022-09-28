@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Ajouter un client</ion-title>
+    <ion-title>Modifier un client</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
   <ion-card (keyup.enter)="modifierClient(unClient)">
     <ion-input type="text" placeholder="Prénom" value="Testing" [(ngModel)]="unClient.prenom" style="text-transform: capitalize;"></ion-input>
     <ion-input type="text" placeholder="Nom" value="testeur" [(ngModel)]="unClient.nom" style="text-transform: capitalize"></ion-input>
-    <ion-input type="tel" placeholder="Téléphone"  value="444-444-4444"[(ngModel)]="unClient.telephone" simpleMask="999-999-9999" ></ion-input>
-    <ion-button color="primary" (click)="modifierClient(unClient)">Ajouter</ion-button>
+    <ion-input type="tel" placeholder="Téléphone"  value="444-444-4444"[(ngModel)]="unClient.telephone" simpleMask="999-999-9999" [clearIfNotMatch]="true"></ion-input>
+    <ion-button color="primary" (click)="modifierClient(unClient)">Modifier</ion-button>
   </ion-card>
 </ion-content>
