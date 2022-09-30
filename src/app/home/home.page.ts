@@ -42,8 +42,12 @@ export class HomePage {
     this.modal.onDidDismiss().then(retour => {
       if (retour.role === 'working') {
         this.clientService.modifierClient(retour.data);
-        this.ionViewWillEnter();
         this.afficherToast('Modification faite avec succès', 'primary');
+        /*
+        setTimeout(() => {
+          this.listeClients = this.clientService.obtenirLesClients();
+        }, 1000);
+        */
       }
       else{
         this.afficherToast('Modification échouée', 'danger', 3000);
@@ -57,8 +61,6 @@ export class HomePage {
     this.modal.onDidDismiss().then(retour => {
       if (retour.role === 'working') {
         this.clientService.ajouterClient(retour.data);
-        //this.listeClients = this.clientService.obtenirLesClients();
-        this.ionViewWillEnter();
         window.location.reload();
         this.afficherToast('Ajout fait avec succès', 'primary');
       }
@@ -66,6 +68,13 @@ export class HomePage {
         this.afficherToast('Ajout échoué', 'danger', 3000);
       }
     });
+  }
+  async supprimerClient(unClient: Client) {
+    this.clientService.supprimerClient(unClient);
+    this.afficherToast('Suppression faite avec succès', 'primary');
+    setTimeout(() => {
+      this.listeClients = this.clientService.obtenirLesClients();
+    }, 1000);
   }
 
   async afficherToast(leMessage: string, laCouleur: string = 'primary', leTemps: number = 2000) {

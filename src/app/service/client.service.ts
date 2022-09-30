@@ -50,24 +50,36 @@ export class ClientService {
   }
 
   async ajouterClient(unClient: Client) {
-    {
-      console.log(unClient.nom);
-      console.log(this.apiGestionClients + '?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
-        unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation);
-      this.httpClient.get(this.apiGestionClients + '?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
-        unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation).subscribe(
+    console.log(unClient.nom);
+    console.log(this.apiGestionClients + '?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
+    unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation);
+    this.httpClient.get(this.apiGestionClients + '?action=ajouterClient&nom=' + unClient.nom + '&prenom=' +
+      unClient.prenom + '&telephone=' + unClient.telephone + '&geolocalisation=' + unClient.geolocalisation).subscribe(
+      (response: any) => {
+        if (response.reponse.includes('working')) {
+          console.log('Le client a été ajouté');
+          return true;
+        } else {
+          console.log('Le client n\'a pas été ajouté');
+          return false;
+        }
+      }
+    );
+    return false;
+  }
+
+    async supprimerClient(unClient: Client) {
+      this.httpClient.get(this.apiGestionClients + '?action=supprimerClient&id=' + unClient.id).subscribe(
         (response: any) => {
           if (response.reponse.includes('working')) {
-            console.log('Le client a été ajouté');
+            console.log('Le client a été supprimé');
             return true;
           } else {
-            console.log('Le client n\'a pas été ajouté');
+            console.log('Le client n\'a pas été supprimé');
             return false;
           }
-        }
-      );
-      return false;
-    }
+        });
+      };
 
-  }
+
 }
