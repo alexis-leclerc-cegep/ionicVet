@@ -70,11 +70,9 @@ export class HomePage {
     });
   }
   async supprimerClient(unClient: Client) {
-    this.clientService.supprimerClient(unClient);
-    this.afficherToast('Suppression faite avec succès', 'primary');
-    setTimeout(() => {
-      this.listeClients = this.clientService.obtenirLesClients();
-    }, 1000);
+    await this.clientService.supprimerClient(unClient);
+    await this.afficherToast('Suppression faite avec succès', 'primary');
+    window.location.reload();
   }
 
   async afficherToast(leMessage: string, laCouleur: string = 'primary', leTemps: number = 2000) {
