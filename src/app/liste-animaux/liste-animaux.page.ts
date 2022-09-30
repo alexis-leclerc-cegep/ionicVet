@@ -1,3 +1,9 @@
+/*
+ * Auteur : Alexis Leclerc
+ * Date : 2022-09-30
+ * Usage : Backend de la page qui liste les animaux
+ * Version : 0.1
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

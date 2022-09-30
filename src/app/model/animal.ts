@@ -1,3 +1,9 @@
+/*
+ * Auteur : Alexis Leclerc
+ * Version : 0.1
+ * Date : 2022-09-30
+ * Usage : Classe Animal
+ */
 export class Animal {
   public id: number;
   public nom: string;

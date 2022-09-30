@@ -1,3 +1,9 @@
+/*
+ * Auteur : Alexis Leclerc
+ * Date : 2022-09-30
+ * Usage : Backend du modal pour ajouter un client
+ * Version : 0.1
+ */
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../model/client';
 import { Router } from '@angular/router';

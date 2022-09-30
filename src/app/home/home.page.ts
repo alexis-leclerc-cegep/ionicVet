@@ -1,9 +1,15 @@
+/*
+ * Auteur : Alexis Leclerc
+ * Date : 2022-09-30
+ * Usage : Backend de la page d'accueil
+ * Version : 0.1
+ */
 import { Component } from '@angular/core';
 import { Client } from '../model/client';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AjouterClientPage } from '../modal/ajouter-client/ajouter-client.page';
 import { ClientService } from '../service/client.service';
-import {ModifierClientPage} from "../modal/modifier-client/modifier-client.page";
+import {ModifierClientPage} from '../modal/modifier-client/modifier-client.page';
 
 @Component({
   selector: 'app-home',
