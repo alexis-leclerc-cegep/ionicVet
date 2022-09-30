@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Client } from '../../model/client';
+import {ModalController} from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-modifier-client',
@@ -11,13 +13,22 @@ export class ModifierClientPage implements OnInit {
 
   @Input() unClient: Client;
 
-  constructor() { }
+  constructor(public modalController: ModalController, public geolocation: Geolocation) { }
 
   ngOnInit() {
   }
 
-  modifierClient(unClient: Client){
-    console.log(unClient);
+  async modifierClient(unClient: Client){
+    await this.geolocation.getCurrentPosition().then((resp) => {
+      this.unClient.geolocalisation = resp.coords.latitude + ', ' + resp.coords.longitude;
+      this.unClient.prenom = this.unClient.prenom.charAt(0).toUpperCase() + this.unClient.prenom.slice(1);
+      this.unClient.nom = this.unClient.nom.charAt(0).toUpperCase() + this.unClient.nom.slice(1);
+      this.modalController.dismiss(this.unClient, 'working');
+    }).catch((error) => {
+      console.log('Error getting location', error);
+      this.modalController.dismiss({role: 'Échec', data: this.unClient});
+    });
+    console.log(this.unClient);
   }
 
 }

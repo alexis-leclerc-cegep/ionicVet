@@ -36,12 +36,12 @@ export class HomePage {
     const clientModal: Client = unClient;
     this.modal = await this.modalController.create(
       {component:ModifierClientPage,
-       componentProps:{unClient: unClient}
+       componentProps:{unClient: clientModal}
       });
     this.modal.present();
     this.modal.onDidDismiss().then(retour => {
       if (retour.role === 'working') {
-       // this.clientService.modifierClient(retour.data);
+        this.clientService.modifierClient(retour.data);
         this.ionViewWillEnter();
         this.afficherToast('Modification faite avec succès', 'primary');
       }
@@ -59,6 +59,7 @@ export class HomePage {
         this.clientService.ajouterClient(retour.data);
         //this.listeClients = this.clientService.obtenirLesClients();
         this.ionViewWillEnter();
+        window.location.reload();
         this.afficherToast('Ajout fait avec succès', 'primary');
       }
       else{
