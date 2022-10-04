@@ -20,16 +20,20 @@ const routes: Routes = [
     loadChildren: () => import('./modal/ajouter-animal/ajouter-animal.module').then( m => m.AjouterAnimalPageModule)
   },
   {
-    path: 'liste-animaux',
-    loadChildren: () => import('./liste-animaux/liste-animaux.module').then(m => m.ListeAnimauxPageModule)
-  },
-  {
     path: 'ajouter-animal',
     loadChildren: () => import('./modal/ajouter-animal/ajouter-animal.module').then( m => m.AjouterAnimalPageModule)
   },
   {
     path: 'modifier-client',
     loadChildren: () => import('./modal/modifier-client/modifier-client.module').then( m => m.ModifierClientPageModule)
+  },
+  {
+    path: 'liste-animaux',
+    loadChildren: () => import('./liste-animaux/liste-animaux.module').then( m => m.ListeAnimauxPageModule)
+  },
+  {
+    path: 'liste-animaux',
+    loadChildren: () => import('./liste-animaux/liste-animaux.module').then( m => m.ListeAnimauxPageModule)
   },
 ];
 

@@ -10,6 +10,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { AjouterClientPage } from '../modal/ajouter-client/ajouter-client.page';
 import { ClientService } from '../service/client.service';
 import {ModifierClientPage} from '../modal/modifier-client/modifier-client.page';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,8 @@ export class HomePage {
   constructor(
     public modalController: ModalController,
     public toastController: ToastController,
-    public clientService: ClientService) {
+    public clientService: ClientService,
+    public router: Router) {
       this.listeClients = Array<Client>();
       this.listeClients = this.clientService.obtenirLesClients();
     }
@@ -35,7 +37,9 @@ export class HomePage {
       //console.log(this.clientService.obtenirLesClients());
     }
 
-  appelerListeAnimaux(unClient: Client){}
+  appelerListeAnimaux(unClient: Client){
+    this.router.navigate(['/liste-animaux']);
+  }
   appelerAjouterAnimal(unClient: Client){}
 
   async appelerModalModifierClient(unClient: Client) {

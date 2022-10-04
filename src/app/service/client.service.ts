@@ -1,3 +1,9 @@
+/*
+ * Auteur : Alexis Leclerc
+ * Date : 2022-09-30
+ * Usage : Service client
+ * Version : 0.1
+ */
 import { Injectable } from '@angular/core';
 import { Client } from '../model/client';
 import { HttpClient } from '@angular/common/http';
