@@ -24,8 +24,8 @@ export class ListeAnimauxPage implements OnInit {
 
   ngOnInit() {
     this.unClient = this.clientService.getClient();
-    this.
-
+    this.listeTypeAnimaux = this.typeAnimalService.getListeTypeAnimaux();
+    console.table(this.listeTypeAnimaux);
   }
 
 
