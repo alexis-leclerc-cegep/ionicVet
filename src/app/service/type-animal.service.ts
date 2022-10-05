@@ -16,6 +16,17 @@ export class TypeAnimalService {
     this.unTypeAnimal = new TypeAnimal(0, '');
   }
 
+  getListeTypeAnimaux(){
+    if(this.listeTypeAnimaux.length === 0){
+      this.obtenirLesTypesAnimaux().subscribe(
+        (response: any) => {
+          this.listeTypeAnimaux = response;
+        }
+      );
+    }
+    return this.listeTypeAnimaux;
+  }
+
   obtenirLesTypesAnimaux() {
     return this.httpClient.get(this.apiGestionAnimaux + '?action=obtenirLesTypesAnimaux');
   }
