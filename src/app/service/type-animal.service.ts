@@ -9,26 +9,24 @@ export class TypeAnimalService {
   listeTypeAnimaux: Array<TypeAnimal>;
   unTypeAnimal: TypeAnimal;
 
-  apiGestionAnimaux = 'http://localhost:8080/api/api_gestionAnimaux.php';
+  apiGestionAnimaux = 'http://localhost:8080/api/api_gestionAnimal.php';
 
   constructor(public httpClient: HttpClient) {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
     this.unTypeAnimal = new TypeAnimal(0, '');
   }
 
-  getListeTypeAnimaux(){
-    if(this.listeTypeAnimaux.length === 0){
-      this.obtenirLesTypesAnimaux().subscribe(
-        (response: any) => {
-          this.listeTypeAnimaux = response;
-        }
-      );
-    }
+  async setListeTypeAnimaux(listeTypeAnimaux: Array<TypeAnimal>){
+    this.listeTypeAnimaux = listeTypeAnimaux;
+  }
+
+  async getListeTypeAnimaux(){
     return this.listeTypeAnimaux;
   }
 
-  obtenirLesTypesAnimaux() {
-    return this.httpClient.get(this.apiGestionAnimaux + '?action=obtenirLesTypesAnimaux');
+  obtenirListeTypeAnimaux() {
+    console.log(this.apiGestionAnimaux + '?action=obtenirListeTypeAnimaux');
+    return this.httpClient.get(this.apiGestionAnimaux + '?action=obtenirListeTypeAnimaux');
   }
 
 }

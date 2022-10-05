@@ -17,14 +17,20 @@ export class ListeAnimauxPage implements OnInit {
 
   constructor(public router: Router,
               public clientService: ClientService,
-              public typeAnimalService: TypeAnimalService,
-              public typeAnimal: TypeAnimal) {
+              public typeAnimalService: TypeAnimalService) {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
   }
 
   ngOnInit() {
     this.unClient = this.clientService.getClient();
-    this.listeTypeAnimaux = this.typeAnimalService.getListeTypeAnimaux();
+
+    this.typeAnimalService.obtenirListeTypeAnimaux().subscribe((response) => {
+      this.listeTypeAnimaux = response as Array<TypeAnimal>;
+      console.table(this.listeTypeAnimaux);
+    });
+  }
+
+  sortirListe(){
     console.table(this.listeTypeAnimaux);
   }
 
