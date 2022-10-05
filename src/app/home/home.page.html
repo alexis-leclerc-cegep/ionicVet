@@ -47,7 +47,7 @@
         Coordonnées : {{unClient.geolocalisation}}
       </div>
       <div class="ion-padding" slot="content">
-        <ion-button [routerLink]="[ 'liste-animaux', unClient]">Liste animaux</ion-button>
+        <ion-button (click)="appelerListeAnimaux(unClient)">Liste animaux</ion-button>
         <ion-button (click)="appelerAjouterAnimal(unClient)">Ajouter animal</ion-button>
         <ion-button (click)="appelerModalModifierClient(unClient)">Modifier client</ion-button>
         <ion-button (click)="supprimerClient(unClient)">Supprimer client</ion-button>

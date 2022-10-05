@@ -38,8 +38,8 @@ export class HomePage {
     }
 
   appelerListeAnimaux(unClient: Client){
-    this.unClient = unClient;
-    this.router.navigate(['/liste-animaux']);
+    this.clientService.setClient(unClient);
+    this.router.navigateByUrl('/liste-animaux');
   }
   appelerAjouterAnimal(unClient: Client){}
 

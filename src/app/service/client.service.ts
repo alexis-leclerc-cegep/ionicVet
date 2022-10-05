@@ -22,6 +22,14 @@ export class ClientService {
     this.unClient = new Client(0, '', '', '', '');
   }
 
+  setClient(unClient: Client) {
+    this.unClient = unClient;
+  }
+
+  getClient() {
+    return this.unClient;
+  }
+
   obtenirLesClients(){
     return this.httpClient.get(this.apiGestionClients + '?action=obtenirLesClients');
   }
