@@ -29,11 +29,11 @@ export class HomePage {
     public clientService: ClientService,
     public router: Router) {
       this.listeClients = Array<Client>();
-      this.listeClients = this.clientService.obtenirLesClients();
+      this.obtenirLesClientsService();
     }
 
     ionViewWillEnter() {
-      this.listeClients = this.clientService.obtenirLesClients();
+      this.obtenirLesClientsService();
       //console.log(this.clientService.obtenirLesClients());
     }
 
@@ -66,12 +66,17 @@ export class HomePage {
     });
   }
 
+  obtenirLesClientsService(){
+    this.clientService.obtenirLesClients().subscribe((reponse) => {this.listeClients = reponse as Array<Client>;});
+  }
+
   async appelerModalAjouterClient() {
     this.modal = await this.modalController.create({component:AjouterClientPage});
     this.modal.present();
     this.modal.onDidDismiss().then(retour => {
       if (retour.role === 'working') {
         this.clientService.ajouterClient(retour.data);
+        this.obtenirLesClientsService();
         window.location.reload();
         this.afficherToast('Ajout fait avec succès', 'primary');
       }

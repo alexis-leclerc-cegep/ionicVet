@@ -22,17 +22,8 @@ export class ClientService {
     this.unClient = new Client(0, '', '', '', '');
   }
 
-  obtenirLesClients(): Array<Client> {
-    this.httpClient.get(this.apiGestionClients + '?action=obtenirLesClients').subscribe(
-      (response: any) => {
-        this.listeClients = response as Array<Client>;
-        console.table(this.listeClients);
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
-    return this.listeClients;
+  obtenirLesClients(){
+    return this.httpClient.get(this.apiGestionClients + '?action=obtenirLesClients');
   }
   async modifierClient(unClient: Client) {
     {
