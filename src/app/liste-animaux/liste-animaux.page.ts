@@ -5,6 +5,7 @@ import { Animal } from '../model/animal';
 import { Router } from '@angular/router';
 import { ClientService } from '../service/client.service';
 import { TypeAnimalService } from '../service/type-animal.service';
+import { AnimalService } from '../service/animal.service';
 
 @Component({
   selector: 'app-liste-animaux',
@@ -13,20 +14,30 @@ import { TypeAnimalService } from '../service/type-animal.service';
 })
 export class ListeAnimauxPage implements OnInit {
   unClient: Client;
+  listeAnimaux: Array<Animal>;
   listeTypeAnimaux: Array<TypeAnimal>;
 
   constructor(public router: Router,
               public clientService: ClientService,
-              public typeAnimalService: TypeAnimalService) {
+              public typeAnimalService: TypeAnimalService,
+              public animalService: AnimalService) {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
   }
 
+  ionViewWillEnter(){
+    this.unClient = this.clientService.getClient();
+  }
   ngOnInit() {
     this.unClient = this.clientService.getClient();
 
     this.typeAnimalService.obtenirListeTypeAnimaux().subscribe((response) => {
       this.listeTypeAnimaux = response as Array<TypeAnimal>;
       console.table(this.listeTypeAnimaux);
+    });
+
+    this.animalService.obtenirAnimauxDuClient(this.unClient.id).subscribe((response) => {
+      this.listeAnimaux = response as Array<Animal>;
+      //console.table(this.unClient.listeAnimaux);
     });
   }
 
