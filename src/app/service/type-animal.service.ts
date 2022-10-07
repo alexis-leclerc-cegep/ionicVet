@@ -24,6 +24,7 @@ export class TypeAnimalService {
     return this.listeTypeAnimaux;
   }
 
+
   obtenirListeTypeAnimaux() {
     console.log(this.apiGestionAnimaux + '?action=obtenirListeTypeAnimaux');
     return this.httpClient.get(this.apiGestionAnimaux + '?action=obtenirListeTypeAnimaux');

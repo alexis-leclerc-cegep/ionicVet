@@ -6,5 +6,15 @@
 
 
 <ion-content>
-<ion-button (click)="sortirListe()">AAAAAAA</ion-button>
+<ion-button (click)="retour()">Retour</ion-button>
+  <ion-button (click)="ajouterAnimal()">Ajouter un animal</ion-button>
+  <ion-list *ngIf="unClient">
+    <ion-item *ngFor="let unAnimal of listeAnimaux">
+      <ion-label>Nom : {{unAnimal.nom}}</ion-label>
+      <ion-label>Date de naissance : {{unAnimal.dateNaissance}}</ion-label>
+      <ion-label>Type d'animal : {{obtenirTypeAnimal(unAnimal.idType)}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-label *ngIf="listeAnimaux && listeAnimaux.length === 0">Aucun animal</ion-label>
+
 </ion-content>

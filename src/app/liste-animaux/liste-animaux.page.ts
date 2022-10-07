@@ -44,10 +44,26 @@ export class ListeAnimauxPage implements OnInit {
 
     this.animalService.obtenirAnimauxDuClient(idClient).subscribe((response) => {
       this.listeAnimaux = response as Array<Animal>;
-      //console.table(this.unClient.listeAnimaux);
+      console.table(this.listeAnimaux);
     });
-
   }
+
+  obtenirTypeAnimal(idTypeAnimal: number){
+    let typeAnimal: TypeAnimal;
+    this.listeTypeAnimaux.forEach((unTypeAnimal) => {
+      if (unTypeAnimal.id === idTypeAnimal){
+        typeAnimal = unTypeAnimal;
+      }
+    });
+    return typeAnimal;
+  }
+
+
+  ajouterAnimal(){}
+  retour(){
+    this.router.navigate(['/home']);
+  }
+
   ngOnInit() {
   }
 
