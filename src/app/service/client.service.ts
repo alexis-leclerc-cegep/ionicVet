@@ -87,6 +87,7 @@ export class ClientService {
       };
 
     obtenirClient(id: number) {
+      console.log(this.apiGestionClients + '?action=obtenirClient&id=' + id);
       return this.httpClient.get(this.apiGestionClients + '?action=obtenirClient&id=' + id);
     }
 

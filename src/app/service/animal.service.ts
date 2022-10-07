@@ -9,7 +9,7 @@ export class AnimalService {
   listeAnimaux: Array<Animal>;
   unAnimal: Animal;
 
-  apiGestionAnimaux = 'http://localhost:8080/api/api_gestionAnimaux.php';
+  apiGestionAnimaux = 'http://localhost:8080/api/api_gestionAnimal.php';
 
   constructor(public httpClient: HttpClient) {
     this.listeAnimaux = new Array<Animal>();
@@ -17,6 +17,7 @@ export class AnimalService {
   }
 
   obtenirAnimauxDuClient(idClient: number) {
+    console.log(this.apiGestionAnimaux + '?action=obtenirAnimauxDuClient&idClient=' + idClient);
     return this.httpClient.get(this.apiGestionAnimaux + '?action=obtenirAnimauxDuClient&idClient=' + idClient);
   }
 }

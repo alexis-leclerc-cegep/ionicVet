@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListeAnimauxPage implements OnInit {
   unClient: Client;
+  listeClientTemporaire: Array<Client>;
   listeAnimaux: Array<Animal>;
   listeTypeAnimaux: Array<TypeAnimal>;
 
@@ -26,12 +27,13 @@ export class ListeAnimauxPage implements OnInit {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
   }
 
-  ionViewWillEnter(){ }
-  ngOnInit() {
+  async ionViewWillEnter(){
     const idClient = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
     this.clientService.obtenirClient(idClient).subscribe((response) => {
-      this.unClient = response as Client;
+      this.listeClientTemporaire = response as Array<Client>;
+      this.unClient = this.listeClientTemporaire[0];
+      console.log('recu le message');
       console.log(this.unClient);
     });
 
@@ -40,10 +42,13 @@ export class ListeAnimauxPage implements OnInit {
       console.table(this.listeTypeAnimaux);
     });
 
-    this.animalService.obtenirAnimauxDuClient(this.unClient.id).subscribe((response) => {
+    this.animalService.obtenirAnimauxDuClient(idClient).subscribe((response) => {
       this.listeAnimaux = response as Array<Animal>;
       //console.table(this.unClient.listeAnimaux);
     });
+
+  }
+  ngOnInit() {
   }
 
   sortirListe(){
