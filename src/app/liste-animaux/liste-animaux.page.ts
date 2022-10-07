@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ClientService } from '../service/client.service';
 import { TypeAnimalService } from '../service/type-animal.service';
 import { AnimalService } from '../service/animal.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-liste-animaux',
@@ -20,15 +21,19 @@ export class ListeAnimauxPage implements OnInit {
   constructor(public router: Router,
               public clientService: ClientService,
               public typeAnimalService: TypeAnimalService,
-              public animalService: AnimalService) {
+              public animalService: AnimalService,
+              public activatedRoute: ActivatedRoute) {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
   }
 
-  ionViewWillEnter(){
-    this.unClient = this.clientService.getClient();
-  }
+  ionViewWillEnter(){ }
   ngOnInit() {
-    this.unClient = this.clientService.getClient();
+    const idClient = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+
+    this.clientService.obtenirClient(idClient).subscribe((response) => {
+      this.unClient = response as Client;
+      console.log(this.unClient);
+    });
 
     this.typeAnimalService.obtenirListeTypeAnimaux().subscribe((response) => {
       this.listeTypeAnimaux = response as Array<TypeAnimal>;

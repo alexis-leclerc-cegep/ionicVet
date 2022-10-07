@@ -86,5 +86,9 @@ export class ClientService {
         });
       };
 
+    obtenirClient(id: number) {
+      return this.httpClient.get(this.apiGestionClients + '?action=obtenirClient&id=' + id);
+    }
+
 
 }
