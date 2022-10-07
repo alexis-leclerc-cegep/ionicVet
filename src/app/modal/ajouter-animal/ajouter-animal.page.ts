@@ -13,7 +13,7 @@ import { Animal } from '../../model/animal';
   styleUrls: ['./ajouter-animal.page.scss'],
 })
 export class AjouterAnimalPage implements OnInit {
-  animal: Animal = new Animal(0, '', 0, 0, new Date());
+  unAnimal: Animal = new Animal(0, '', 0, 0, new Date());
 
   constructor() {
   }

@@ -7,6 +7,8 @@ import { ClientService } from '../service/client.service';
 import { TypeAnimalService } from '../service/type-animal.service';
 import { AnimalService } from '../service/animal.service';
 import { ActivatedRoute } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { AjouterAnimalPage} from '../modal/ajouter-animal/ajouter-animal.page';
 
 @Component({
   selector: 'app-liste-animaux',
@@ -14,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./liste-animaux.page.scss'],
 })
 export class ListeAnimauxPage implements OnInit {
+  modal: any;
   unClient: Client;
   listeClientTemporaire: Array<Client>;
   listeAnimaux: Array<Animal>;
@@ -23,7 +26,8 @@ export class ListeAnimauxPage implements OnInit {
               public clientService: ClientService,
               public typeAnimalService: TypeAnimalService,
               public animalService: AnimalService,
-              public activatedRoute: ActivatedRoute) {
+              public activatedRoute: ActivatedRoute,
+              public modalController: ModalController) {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
   }
 
@@ -48,14 +52,19 @@ export class ListeAnimauxPage implements OnInit {
     });
   }
 
+  async appelerModalAjouterAnimal(){
+    this.modal = await this.modalController.create(
+      {
+        component: AjouterAnimalPage,
+        componentProps: {unClient: this.unClient}
+      });
+  }
+
   obtenirTypeAnimal(idTypeAnimal: number){
-    let typeAnimal: TypeAnimal;
-    this.listeTypeAnimaux.forEach((unTypeAnimal) => {
-      if (unTypeAnimal.id === idTypeAnimal){
-        typeAnimal = unTypeAnimal;
-      }
-    });
-    return typeAnimal;
+    console.log(idTypeAnimal);
+    const result = this.listeTypeAnimaux.filter(typeAnimal => typeAnimal.id === idTypeAnimal);
+    console.log(result);
+    return result[0].animal;
   }
 
 
