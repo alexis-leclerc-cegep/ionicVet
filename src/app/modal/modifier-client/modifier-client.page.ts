@@ -9,6 +9,7 @@ import { Client } from '../../model/client';
 import {ModalController} from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
+
 @Component({
   selector: 'app-modifier-client',
   templateUrl: './modifier-client.page.html',

@@ -4,10 +4,11 @@
  * Usage : Backend du modal pour ajouter des animaux
  * Version : 0.1
  */
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Animal } from '../../model/animal';
+import { Client } from '../../model/client';
 import { TypeAnimal } from '../../model/type-animal';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ajouter-animal',
@@ -15,13 +16,15 @@ import { ModalController, ToastController } from '@ionic/angular';
   styleUrls: ['./ajouter-animal.page.scss'],
 })
 export class AjouterAnimalPage implements OnInit {
-  unAnimal: Animal = new Animal(0, '', 0, 0, new Date());
+  @Input() unClient: Client;
   listeTypeAnimaux: Array<TypeAnimal>;
+  unAnimal: Animal = new Animal(0, '', 0, 0, new Date(''));
 
-  constructor() {
+  constructor(modalController: ModalController) {
   }
 
   ngOnInit() {
+    console.log(this.listeTypeAnimaux);
   }
 
   ajouterAnimal(){ }
