@@ -18,14 +18,14 @@
           <ion-label>Type</ion-label>
           <ion-select>
             <ng-container *ngFor="let unTypeAnimal of listeTypeAnimaux">
-              <ion-select-option [value]="unTypeAnimal.id">{{unTypeAnimal.animal}}</ion-select-option>
+              <ion-select-option [value]="unTypeAnimal.id" [(ngModel)]="unAnimal.dateNaissance">{{unTypeAnimal.animal}}</ion-select-option>
             </ng-container>
           </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Date de naissance</ion-label>
         <!--<ion-datetime [(ngModel)]="unAnimal.dateNaissance"></ion-datetime>-->
-        <ion-datetime pickerFormat="DD MMMM YYYY"></ion-datetime>
+        <ion-picker pickerFormat="DD MMMM YYYY"></ion-picker>
       </ion-item>
       <ion-item>
       </ion-item>
