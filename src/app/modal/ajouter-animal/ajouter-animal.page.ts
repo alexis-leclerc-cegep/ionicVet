@@ -6,6 +6,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Animal } from '../../model/animal';
+import { TypeAnimal} from '../../model/type-animal';
 
 @Component({
   selector: 'app-ajouter-animal',
@@ -14,6 +15,7 @@ import { Animal } from '../../model/animal';
 })
 export class AjouterAnimalPage implements OnInit {
   unAnimal: Animal = new Animal(0, '', 0, 0, new Date());
+  listeTypeAnimaux: Array<TypeAnimal>;
 
   constructor() {
   }

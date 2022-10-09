@@ -70,7 +70,7 @@ export class ListeAnimauxPage implements OnInit {
 
   ajouterAnimal(){}
   retour(){
-    this.router.navigate(['/home']);
+    this.router.navigateByUrl('/home');
   }
 
   ngOnInit() {

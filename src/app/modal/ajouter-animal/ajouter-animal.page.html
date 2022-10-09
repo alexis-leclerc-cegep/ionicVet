@@ -14,9 +14,17 @@
         <ion-label position="floating">Nom</ion-label>
         <ion-input [(ngModel)]="unAnimal.nom"></ion-input>
       </ion-item>
-      <!--le genre de dropdown-->
+      <ion-dropdown>
+        <ion-label>Type</ion-label>
+
+        <ion-select  [(ngModel)]="unAnimal.idTypeanimal">
+          <ng-container *ngFor="let unTypeAnimal in listeTypeAnimaux">
+            <ion-select-option [value]="unTypeAnimal.idTypeanimal">{{unTypeAnimal.animal}}</ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-dropdown>
       <ion-item>
-        <ion-label position="floating">Couleur</ion-label>
+        <ion-label position="floating">Date de naissance</ion-label>
         <ion-input [(ngModel)]="unAnimal.dateNaissance"></ion-input>
       </ion-item>
       <ion-item>
