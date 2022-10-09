@@ -7,7 +7,7 @@ import { ClientService } from '../service/client.service';
 import { TypeAnimalService } from '../service/type-animal.service';
 import { AnimalService } from '../service/animal.service';
 import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AjouterAnimalPage} from '../modal/ajouter-animal/ajouter-animal.page';
 
 @Component({
@@ -27,7 +27,8 @@ export class ListeAnimauxPage implements OnInit {
               public typeAnimalService: TypeAnimalService,
               public animalService: AnimalService,
               public activatedRoute: ActivatedRoute,
-              public modalController: ModalController) {
+              public modalController: ModalController,
+              public toastController: ToastController) {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
   }
 
@@ -56,8 +57,9 @@ export class ListeAnimauxPage implements OnInit {
     this.modal = await this.modalController.create(
       {
         component: AjouterAnimalPage,
-        componentProps: {unClient: this.unClient}
+        componentProps: {unClient: this.unClient, listeTypeAnimaux: this.listeTypeAnimaux}
       });
+    this.modal.present();
   }
 
   obtenirTypeAnimal(idTypeAnimal: number){
@@ -68,7 +70,6 @@ export class ListeAnimauxPage implements OnInit {
   }
 
 
-  ajouterAnimal(){}
   retour(){
     this.router.navigateByUrl('/home');
   }
@@ -80,6 +81,10 @@ export class ListeAnimauxPage implements OnInit {
     console.table(this.listeTypeAnimaux);
   }
 
+  async afficherToast(leMessage: string, laCouleur: string = 'primary', leTemps: number = 2000) {
+    const toast = await this.toastController.create({color: laCouleur, duration:leTemps, message: leMessage});
+    await toast.present();
+  }
 
 
 }

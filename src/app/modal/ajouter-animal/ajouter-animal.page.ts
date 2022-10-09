@@ -6,7 +6,8 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Animal } from '../../model/animal';
-import { TypeAnimal} from '../../model/type-animal';
+import { TypeAnimal } from '../../model/type-animal';
+import { ModalController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ajouter-animal',

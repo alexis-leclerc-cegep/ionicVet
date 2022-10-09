@@ -7,7 +7,7 @@
 
 <ion-content>
 <ion-button (click)="retour()">Retour</ion-button>
-  <ion-button (click)="ajouterAnimal()">Ajouter un animal</ion-button>
+  <ion-button (click)="appelerModalAjouterAnimal()">Ajouter un animal</ion-button>
   <ion-list *ngIf="unClient && listeTypeAnimaux">
     <ion-item *ngFor="let unAnimal of listeAnimaux">
       <ion-label>Nom : {{unAnimal.nom}}</ion-label>
