@@ -20,4 +20,20 @@ export class AnimalService {
     console.log(this.apiGestionAnimaux + '?action=obtenirAnimauxDuClient&idClient=' + idClient);
     return this.httpClient.get(this.apiGestionAnimaux + '?action=obtenirAnimauxDuClient&idClient=' + idClient);
   }
+
+  async ajouterAnimal(unAnimal: Animal) {
+    this.httpClient.get(this.apiGestionAnimaux + '?action=ajouterAnimal&nom=' + unAnimal.nom
+      + '&idTypeAnimal=' + unAnimal.idTypeAnimal + '&idClient='
+      + unAnimal.idClient + '&dateNaissance=' + unAnimal.dateNaissance).subscribe(
+        (response: any) => {
+          if(response.reponse.includes('working')) {
+            console.log('animal ajoute');
+            return true;
+          } else{
+            return false;
+          }
+        }
+    );
+    return false;
+  }
 }

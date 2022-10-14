@@ -21,7 +21,7 @@ export class AjouterAnimalPage implements OnInit {
   unAnimal: Animal = new Animal(0, '', 0, 0, new Date(''));
   datePourTester: Date;
 
-  constructor(modalController: ModalController) {
+  constructor(public modalController: ModalController) {
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class AjouterAnimalPage implements OnInit {
   }
 
   ajouterAnimal(){
-    this.modalController
+    this.unAnimal.idClient = this.unClient.id;
+    this.modalController.dismiss(this.unAnimal, 'working');
   }
-
 }

@@ -7,14 +7,14 @@
 export class Animal {
   public id: number;
   public nom: string;
-  public idTypeanimal: number;
+  public idTypeAnimal: number;
   public idClient: number;
   public dateNaissance: Date;
 
-  constructor(id: number, nom: string, idTypeanimal: number, idClient: number, dateNaissance: Date) {
+  constructor(id: number, nom: string, idTypeAnimal: number, idClient: number, dateNaissance: Date) {
     this.id = id;
     this.nom = nom;
-    this.idTypeanimal = idTypeanimal;
+    this.idTypeAnimal = idTypeAnimal;
     this.idClient = idClient;
     this.dateNaissance = dateNaissance;
   }

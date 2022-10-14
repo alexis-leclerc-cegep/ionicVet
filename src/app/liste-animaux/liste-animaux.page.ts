@@ -60,6 +60,16 @@ export class ListeAnimauxPage implements OnInit {
         componentProps: {unClient: this.unClient, listeTypeAnimaux: this.listeTypeAnimaux}
       });
     this.modal.present();
+    this.modal.onDidDismiss().then(retour => {
+      if (retour.role === 'working') {
+        this.animalService.ajouterAnimal(retour.data);
+        window.location.reload();
+        this.afficherToast('Ajout fait avec succès', 'primary');
+      }
+      else{
+        this.afficherToast('Ajout échoué', 'danger', 3000);
+      }
+    });
   }
 
   obtenirTypeAnimal(idTypeAnimal: number){
