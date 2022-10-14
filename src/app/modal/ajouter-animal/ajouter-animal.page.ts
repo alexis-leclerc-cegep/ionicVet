@@ -25,7 +25,6 @@ export class AjouterAnimalPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.listeTypeAnimaux);
   }
 
   ajouterAnimal(){

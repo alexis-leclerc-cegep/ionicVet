@@ -63,7 +63,6 @@ export class ListeAnimauxPage implements OnInit {
     this.modal.onDidDismiss().then(retour => {
       if (retour.role === 'working') {
         this.animalService.ajouterAnimal(retour.data);
-        window.location.reload();
         this.afficherToast('Ajout fait avec succès', 'primary');
       }
       else{
@@ -73,9 +72,7 @@ export class ListeAnimauxPage implements OnInit {
   }
 
   obtenirTypeAnimal(idTypeAnimal: number){
-    console.log(idTypeAnimal);
     const result = this.listeTypeAnimaux.filter(typeAnimal => typeAnimal.id === idTypeAnimal);
-    console.log(result);
     return result[0].animal;
   }
 

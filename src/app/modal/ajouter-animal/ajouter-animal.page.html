@@ -17,7 +17,7 @@
           <ion-label>Type</ion-label>
           <ion-select>
             <ng-container *ngFor="let unTypeAnimal of listeTypeAnimaux">
-              <ion-select-option [value]="unTypeAnimal.id" [(ngModel)]="unAnimal.idTypeanimal">{{unTypeAnimal.animal}}</ion-select-option>
+              <ion-select-option [value]="unTypeAnimal.id" name="jeff" [(ngModel)]="unAnimal.idTypeAnimal">{{unTypeAnimal.animal}}</ion-select-option>
             </ng-container>
           </ion-select>
       </ion-item>
