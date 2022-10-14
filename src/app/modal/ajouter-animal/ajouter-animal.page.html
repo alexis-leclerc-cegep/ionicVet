@@ -1,13 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ajouterAnimal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card (keyup.enter)="ajouterAnimal()">
     <ion-card-header>
-      <ion-card-title>Ajouter un unAnimal</ion-card-title>
+      <ion-card-title>Ajouter un Animal</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
@@ -18,18 +17,18 @@
           <ion-label>Type</ion-label>
           <ion-select>
             <ng-container *ngFor="let unTypeAnimal of listeTypeAnimaux">
-              <ion-select-option [value]="unTypeAnimal.id" [(ngModel)]="unAnimal.dateNaissance">{{unTypeAnimal.animal}}</ion-select-option>
+              <ion-select-option [value]="unTypeAnimal.id" [(ngModel)]="unAnimal.idTypeanimal">{{unTypeAnimal.animal}}</ion-select-option>
             </ng-container>
           </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Date de naissance</ion-label>
-        <!--<ion-datetime [(ngModel)]="unAnimal.dateNaissance"></ion-datetime>-->
-        <ion-picker pickerFormat="DD MMMM YYYY"></ion-picker>
+        <ion-label>Date de naissance</ion-label>
+          <ion-datetime [(ngModel)]="datePourTester"></ion-datetime>
       </ion-item>
       <ion-item>
       </ion-item>
     </ion-card-content>
+    <ion-button (click)="ajouterAnimal()">Ajouter l'animal</ion-button>
 
   </ion-card>
 

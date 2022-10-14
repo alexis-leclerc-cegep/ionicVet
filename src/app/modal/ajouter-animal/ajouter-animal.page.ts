@@ -19,6 +19,7 @@ export class AjouterAnimalPage implements OnInit {
   @Input() unClient: Client;
   listeTypeAnimaux: Array<TypeAnimal>;
   unAnimal: Animal = new Animal(0, '', 0, 0, new Date(''));
+  datePourTester: Date;
 
   constructor(modalController: ModalController) {
   }
@@ -27,6 +28,8 @@ export class AjouterAnimalPage implements OnInit {
     console.log(this.listeTypeAnimaux);
   }
 
-  ajouterAnimal(){ }
+  ajouterAnimal(){
+    this.modalController
+  }
 
 }
