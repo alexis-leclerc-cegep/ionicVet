@@ -40,4 +40,17 @@ export class AnimalService {
     );
     return false;
   }
+
+  async supprimerAnimal(unAnimal: Animal){
+    this.httpClient.get(this.apiGestionAnimaux + '?action=supprimerAnimal&id=' + unAnimal.id).subscribe(
+      (response: any) => {
+        if(response.reponse.includes('working')) {
+          console.log('animal supprime');
+          return true;
+        } else{
+          return false;
+        }
+      }
+    );
+  }
 }

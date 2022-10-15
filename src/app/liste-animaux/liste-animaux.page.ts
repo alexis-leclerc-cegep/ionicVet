@@ -51,6 +51,15 @@ export class ListeAnimauxPage implements OnInit {
       this.listeAnimaux = response as Array<Animal>;
       console.table(this.listeAnimaux);
     });
+    //this.obtenirAnimauxDuClient(idClient);
+
+  }
+
+  async obtenirAnimauxDuClient(idClient: number){
+    this.animalService.obtenirAnimauxDuClient(idClient).subscribe((response) => {
+      this.listeAnimaux = response as Array<Animal>;
+      console.table(this.listeAnimaux);
+    });
   }
 
   async appelerModalAjouterAnimal(){
@@ -64,6 +73,7 @@ export class ListeAnimauxPage implements OnInit {
       if (retour.role === 'working') {
         this.animalService.ajouterAnimal(retour.data);
         this.afficherToast('Ajout fait avec succès', 'primary');
+        this.obtenirAnimauxDuClient(this.unClient.id);
       }
       else{
         this.afficherToast('Ajout échoué', 'danger', 3000);
@@ -72,8 +82,14 @@ export class ListeAnimauxPage implements OnInit {
   }
 
   obtenirTypeAnimal(idTypeAnimal: number){
+    console.log(idTypeAnimal);
     const result = this.listeTypeAnimaux.filter(typeAnimal => typeAnimal.id === idTypeAnimal);
     return result[0].animal;
+  }
+
+  async supprimerAnimal(unAnimal: Animal){
+    const result = await this.animalService.supprimerAnimal(unAnimal);
+    await this.obtenirAnimauxDuClient(this.unClient.id);
   }
 
 
