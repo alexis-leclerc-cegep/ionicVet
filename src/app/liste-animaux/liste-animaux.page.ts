@@ -82,7 +82,6 @@ export class ListeAnimauxPage implements OnInit {
   }
 
   obtenirTypeAnimal(idTypeAnimal: number){
-    console.log(idTypeAnimal);
     const result = this.listeTypeAnimaux.filter(typeAnimal => typeAnimal.id === idTypeAnimal);
     return result[0].animal;
   }
