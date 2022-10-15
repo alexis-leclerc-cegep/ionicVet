@@ -25,7 +25,7 @@ export class AnimalService {
     console.log(
     this.apiGestionAnimaux + '?action=ajouterAnimal&nom=' + unAnimal.nom
       + '&idTypeAnimal=' + unAnimal.idTypeAnimal + '&idClient='
-      + unAnimal.idClient + '&dateNaissance=' + unAnimal.dateNaissance.toDateString());
+      + unAnimal.idClient + '&dateNaissance=' + unAnimal.dateNaissance);
     this.httpClient.get(this.apiGestionAnimaux + '?action=ajouterAnimal&nom=' + unAnimal.nom
       + '&idTypeAnimal=' + unAnimal.idTypeAnimal + '&idClient='
       + unAnimal.idClient + '&dateNaissance=' + unAnimal.dateNaissance).subscribe(

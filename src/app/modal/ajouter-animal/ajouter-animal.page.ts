@@ -30,6 +30,7 @@ export class AjouterAnimalPage implements OnInit {
   ajouterAnimal(){
     this.unAnimal.idClient = this.unClient.id;
     this.unAnimal.dateNaissance = this.dateNaissance; //ne marche pas si je le mets direct dans unAnimal, je ne sais pas pourquoi
+    console.table(this.unAnimal);
     this.modalController.dismiss(this.unAnimal, 'working');
   }
 }
