@@ -19,7 +19,7 @@ export class AjouterAnimalPage implements OnInit {
   @Input() unClient: Client;
   listeTypeAnimaux: Array<TypeAnimal>;
   unAnimal: Animal = new Animal(0, '', 0, 0, new Date(''));
-  datePourTester: Date;
+  dateNaissance: Date;
 
   constructor(public modalController: ModalController) {
   }
@@ -29,6 +29,7 @@ export class AjouterAnimalPage implements OnInit {
 
   ajouterAnimal(){
     this.unAnimal.idClient = this.unClient.id;
+    this.unAnimal.dateNaissance = this.dateNaissance; //ne marche pas si je le mets direct dans unAnimal, je ne sais pas pourquoi
     this.modalController.dismiss(this.unAnimal, 'working');
   }
 }

@@ -15,17 +15,15 @@
       </ion-item>
       <ion-item>
           <ion-label>Type</ion-label>
-          <ion-select>
+          <ion-select name="typeAnimal">
             <ng-container *ngFor="let unTypeAnimal of listeTypeAnimaux">
-              <ion-select-option [value]="unTypeAnimal.id" name="jeff" [(ngModel)]="unAnimal.idTypeAnimal">{{unTypeAnimal.animal}}</ion-select-option>
+              <ion-select-option [value]="unTypeAnimal.id" name="chepo" ngDefaultControl [(ngModel)]="unAnimal.idTypeAnimal">{{unTypeAnimal.animal}}</ion-select-option>
             </ng-container>
           </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Date de naissance</ion-label>
-          <ion-datetime [(ngModel)]="datePourTester"></ion-datetime>
-      </ion-item>
-      <ion-item>
+          <ion-datetime [(ngModel)]="dateNaissance"></ion-datetime>
       </ion-item>
     </ion-card-content>
     <ion-button (click)="ajouterAnimal()">Ajouter l'animal</ion-button>
