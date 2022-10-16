@@ -45,6 +45,7 @@ export class ListeInterventionsPage implements OnInit {
 
     this.typeInterventionService.obtenirListeTypeInterventions().subscribe((response) => {
       this.listeTypeInterventions = response as Array<TypeIntervention>;
+      console.log('liste type');
       console.table(this.listeTypeInterventions);
     });
 
@@ -83,7 +84,7 @@ export class ListeInterventionsPage implements OnInit {
 
   obtenirTypeIntervention(idTypeIntervention: number){
     const result = this.listeTypeInterventions.filter(typeIntervention => typeIntervention.id === idTypeIntervention);
-    return result[0].intervention;
+    return result[0];
   }
 
   async supprimerIntervention(unIntervention: Intervention){

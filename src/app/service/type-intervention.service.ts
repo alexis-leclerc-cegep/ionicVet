@@ -13,7 +13,7 @@ export class TypeInterventionService {
 
   constructor(public httpClient: HttpClient) {
     this.listeTypeInterventions = new Array<TypeIntervention>();
-    this.unTypeIntervention = new TypeIntervention(0, '');
+    this.unTypeIntervention = new TypeIntervention(0, '', 0);
   }
 
   async setListeTypeInterventions(listeTypeInterventions: Array<TypeIntervention>){
