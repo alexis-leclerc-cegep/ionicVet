@@ -54,4 +54,10 @@ export class AnimalService {
       }
     );
   }
+
+
+  obtenirAnimal(id: number) {
+    console.log(this.apiGestionAnimaux + '?action=obtenirAnimal&id=' + id);
+    return this.httpClient.get(this.apiGestionAnimaux + '?action=obtenirAnimal&id=' + id);
+  }
 }

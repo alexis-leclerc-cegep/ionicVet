@@ -7,6 +7,8 @@ import { TypeInterventionService } from '../service/type-intervention.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AjouterAnimalPage} from '../modal/ajouter-animal/ajouter-animal.page';
+import { Intervention } from '../model/intervention';
+import { InterventionService } from '../service/intervention.service';
 
 @Component({
   selector: 'app-liste-animaux',
@@ -26,14 +28,15 @@ export class ListeInterventionsPage implements OnInit {
               public animalService: AnimalService,
               public activatedRoute: ActivatedRoute,
               public modalController: ModalController,
-              public toastController: ToastController) {
+              public toastController: ToastController,
+              public interventionService: InterventionService) {
     this.listeTypeInterventions = new Array<TypeIntervention>();
   }
 
   async ionViewWillEnter(){
     const idAnimal = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
-    this.clientService.obtenirAnimal(idAnimal).subscribe((response) => {
+    this.animalService.obtenirAnimal(idAnimal).subscribe((response) => {
       this.listeAnimalTemporaire = response as Array<Animal>;
       this.unAnimal = this.listeAnimalTemporaire[0];
       console.log('recu le message');
@@ -45,7 +48,7 @@ export class ListeInterventionsPage implements OnInit {
       console.table(this.listeTypeInterventions);
     });
 
-    this.animalService.obtenirInterventionsAnimal(idAnimal).subscribe((response) => {
+    this.interventionService.obtenirInterventionsAnimal(idAnimal).subscribe((response) => {
       this.listeInterventions = response as Array<Animal>;
       console.table(this.listeInterventions);
     });
@@ -54,7 +57,7 @@ export class ListeInterventionsPage implements OnInit {
   }
 
   async obtenirInterventionsAnimal(idAnimal: number){
-    this.animalService.obtenirInterventionsAnimal(idAnimal).subscribe((response) => {
+    this.interventionService.obtenirInterventionsAnimal(idAnimal).subscribe((response) => {
       this.listeInterventions = response as Array<Animal>;
       console.table(this.listeInterventions);
     });
@@ -80,7 +83,7 @@ export class ListeInterventionsPage implements OnInit {
 
   obtenirTypeIntervention(idTypeIntervention: number){
     const result = this.listeTypeInterventions.filter(typeIntervention => typeIntervention.id === idTypeIntervention);
-    return result[0].animal;
+    return result[0].intervention;
   }
 
   async supprimerAnimal(uneIntervention: Animal){
