@@ -69,14 +69,13 @@ export class ListeAnimauxPage implements OnInit {
         componentProps: {unClient: this.unClient, listeTypeAnimaux: this.listeTypeAnimaux}
       });
     this.modal.present();
-    this.modal.onDidDismiss().then(retour => {
+    this.modal.onDidDismiss().then(async retour => {
       if (retour.role === 'working') {
-        this.animalService.ajouterAnimal(retour.data);
-        this.afficherToast('Ajout fait avec succès', 'primary');
-        this.obtenirAnimauxDuClient(this.unClient.id);
-      }
-      else{
-        this.afficherToast('Ajout échoué', 'danger', 3000);
+        await this.animalService.ajouterAnimal(retour.data);
+        await this.afficherToast('Ajout fait avec succès', 'primary');
+        await this.obtenirAnimauxDuClient(this.unClient.id);
+      } else {
+        await this.afficherToast('Ajout échoué', 'danger', 3000);
       }
     });
   }
@@ -87,7 +86,7 @@ export class ListeAnimauxPage implements OnInit {
   }
 
   async supprimerAnimal(unAnimal: Animal){
-    const result = await this.animalService.supprimerAnimal(unAnimal);
+    await this.animalService.supprimerAnimal(unAnimal);
     await this.obtenirAnimauxDuClient(this.unClient.id);
   }
 
