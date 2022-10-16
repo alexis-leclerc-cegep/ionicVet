@@ -7,11 +7,12 @@
 
 <ion-content>
   <ion-button (click)="retour()">Retour</ion-button>
-  <ion-button (click)="appelerModalAjouterAnimal()">Ajouter un animal</ion-button>
+  <ion-button (click)="appelerModalAjouterIntervention()">Ajouter une intervention</ion-button>
   <ion-list *ngIf="unAnimal && listeTypeInterventions">
     <ion-item *ngFor="let unIntervention of listeInterventions">
       <ion-label>Date de l'intervention : {{unIntervention.dateIntervention}}</ion-label>
-      <ion-label>Type d'intervention : {{obtenirTypeIntervention(unIntervention.idTypeIntervention)}}</ion-label>
+      <ion-label>Type d'intervention : {{obtenirTypeIntervention(unIntervention.idTypeIntervention).intervention}}</ion-label>
+      <ion-label>Cout de l'intervention : {{obtenirTypeIntervention(unIntervention.idTypeIntervention).cout}} $</ion-label>
       <ion-button (click)="supprimerIntervention(unIntervention)">Supprimer</ion-button>
     </ion-item>
   </ion-list>

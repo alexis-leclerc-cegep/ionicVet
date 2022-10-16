@@ -1,9 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ajouter-intervention</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card (keyup.enter)="ajouterIntervention()">
+    <ion-card-header>
+      <ion-card-title>Ajouter un Intervention</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Type</ion-label>
+        <ion-select [(ngModel)]="unIntervention.idTypeIntervention" name="typeIntervention">
+          <ng-container *ngFor="let unTypeIntervention of listeTypeAnimaux">
+            <ion-select-option [value]="unTypeIntervention.id" name="test" ngDefaultControl >{{unTypeIntervention.animal}}</ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date de l'intervention</ion-label>
+        <br>
+        <ion-datetime [(ngModel)]="dateIntervention"></ion-datetime>
+      </ion-item>
+    </ion-card-content>
+    <ion-button (click)="ajouterIntervention()">Ajouter l'animal</ion-button>
+
+  </ion-card>
 
 </ion-content>

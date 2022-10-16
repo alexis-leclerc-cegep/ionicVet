@@ -6,9 +6,9 @@ import { TypeIntervention} from '../model/type-intervention';
 import { TypeInterventionService } from '../service/type-intervention.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
-import { AjouterAnimalPage} from '../modal/ajouter-animal/ajouter-animal.page';
 import { Intervention } from '../model/intervention';
 import { InterventionService } from '../service/intervention.service';
+import {AjouterInterventionPage} from '../modal/ajouter-intervention/ajouter-intervention.page';
 
 @Component({
   selector: 'app-liste-animaux',
@@ -64,16 +64,17 @@ export class ListeInterventionsPage implements OnInit {
     });
   }
 
-  async appelerModalAjouterAnimal(){
+  async appelerModalAjouterIntervention(){
+    console.table(this.listeTypeInterventions);
     this.modal = await this.modalController.create(
       {
-        component: AjouterAnimalPage,
+        component: AjouterInterventionPage,
         componentProps: {unAnimal: this.unAnimal, listeTypeInterventions: this.listeTypeInterventions}
       });
     this.modal.present();
     this.modal.onDidDismiss().then(async retour => {
       if (retour.role === 'working') {
-        await this.animalService.ajouterAnimal(retour.data);
+        await this.interventionService.ajouterIntervention(retour.data);
         await this.afficherToast('Ajout fait avec succès', 'primary');
         await this.obtenirInterventionsAnimal(this.unAnimal.id);
       } else {
