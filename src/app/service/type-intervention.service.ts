@@ -9,7 +9,7 @@ export class TypeInterventionService {
   listeTypeInterventions: Array<TypeIntervention>;
   unTypeIntervention: TypeIntervention;
 
-  apiGestionInterventions = 'http://localhost:8080/api/api_gestionIntervention.php';
+  apiGestionInterventions = 'http://localhost:8080/api/api_gestionInterventions.php';
 
   constructor(public httpClient: HttpClient) {
     this.listeTypeInterventions = new Array<TypeIntervention>();

@@ -14,6 +14,7 @@
       <ion-label>Date de naissance : {{unAnimal.dateNaissance}}</ion-label>
       <ion-label>Type d'animal : {{obtenirTypeAnimal(unAnimal.idTypeAnimal)}}</ion-label>
       <ion-button (click)="supprimerAnimal(unAnimal)">Supprimer</ion-button>
+      <ion-button (click)="naviguerInterventions(unAnimal)">Interventions</ion-button>
     </ion-item>
   </ion-list>
   <ion-label *ngIf="listeAnimaux && listeAnimaux.length === 0">Aucun animal</ion-label>

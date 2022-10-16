@@ -90,6 +90,9 @@ export class ListeAnimauxPage implements OnInit {
     await this.obtenirAnimauxDuClient(this.unClient.id);
   }
 
+  naviguerInterventions(unAnimal: Animal){
+    this.router.navigate(['/liste-interventions', {id: unAnimal.id}]);
+  }
 
   retour(){
     this.router.navigateByUrl('/home');

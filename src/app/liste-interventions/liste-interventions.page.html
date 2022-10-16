@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar *ngIf="uneIntervention">
-    <ion-title>Interventions de {{uneIntervention.prenom}} {{uneIntervention.nom}}</ion-title>
+  <ion-toolbar *ngIf="unAnimal">
+    <ion-title>Interventions de {{unAnimal.nom}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,12 +8,11 @@
 <ion-content>
   <ion-button (click)="retour()">Retour</ion-button>
   <ion-button (click)="appelerModalAjouterAnimal()">Ajouter un animal</ion-button>
-  <ion-list *ngIf="uneIntervention && listeTypeInterventions">
-    <ion-item *ngFor="let uneIntervention of listeInterventions">
-      <ion-label>Nom : {{uneIntervention.nom}}</ion-label>
-      <ion-label>Date de naissance : {{uneIntervention.dateNaissance}}</ion-label>
-      <ion-label>Type d'animal : {{obtenirTypeAnimal(uneIntervention.idTypeAnimal)}}</ion-label>
-      <ion-button (click)="supprimerAnimal(uneIntervention)">Supprimer</ion-button>
+  <ion-list *ngIf="unAnimal && listeTypeInterventions">
+    <ion-item *ngFor="let unIntervention of listeInterventions">
+      <ion-label>Date de l'intervention : {{unIntervention.dateIntervention}}</ion-label>
+      <ion-label>Type d'intervention : {{obtenirTypeIntervention(unIntervention.idTypeIntervention)}}</ion-label>
+      <ion-button (click)="supprimerIntervention(unIntervention)">Supprimer</ion-button>
     </ion-item>
   </ion-list>
   <ion-label *ngIf="listeInterventions && listeInterventions.length === 0">Aucun animal</ion-label>

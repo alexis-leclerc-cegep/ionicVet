@@ -12,14 +12,14 @@ import { InterventionService } from '../service/intervention.service';
 
 @Component({
   selector: 'app-liste-animaux',
-  templateUrl: './liste-animaux.page.html',
-  styleUrls: ['./liste-animaux.page.scss'],
+  templateUrl: './liste-interventions.page.html',
+  styleUrls: ['./liste-interventions.page.scss'],
 })
 export class ListeInterventionsPage implements OnInit {
   modal: any;
   unAnimal: Animal;
   listeAnimalTemporaire: Array<Animal>;
-  listeInterventions: Array<Animal>;
+  listeInterventions: Array<Intervention>;
   listeTypeInterventions: Array<TypeIntervention>;
 
   constructor(public router: Router,
@@ -49,7 +49,7 @@ export class ListeInterventionsPage implements OnInit {
     });
 
     this.interventionService.obtenirInterventionsAnimal(idAnimal).subscribe((response) => {
-      this.listeInterventions = response as Array<Animal>;
+      this.listeInterventions = response as Array<Intervention>;
       console.table(this.listeInterventions);
     });
     //this.obtenirInterventionsDuAnimal(idAnimal);
@@ -58,7 +58,7 @@ export class ListeInterventionsPage implements OnInit {
 
   async obtenirInterventionsAnimal(idAnimal: number){
     this.interventionService.obtenirInterventionsAnimal(idAnimal).subscribe((response) => {
-      this.listeInterventions = response as Array<Animal>;
+      this.listeInterventions = response as Array<Intervention>;
       console.table(this.listeInterventions);
     });
   }
@@ -86,8 +86,8 @@ export class ListeInterventionsPage implements OnInit {
     return result[0].intervention;
   }
 
-  async supprimerAnimal(uneIntervention: Animal){
-    await this.animalService.supprimerAnimal(uneIntervention);
+  async supprimerIntervention(unIntervention: Intervention){
+    await this.interventionService.supprimerIntervention(unIntervention);
     await this.obtenirInterventionsAnimal(this.unAnimal.id);
   }
 

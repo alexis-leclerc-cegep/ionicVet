@@ -9,7 +9,7 @@ export class InterventionService {
   listeInterventions: Array<Intervention>;
   unIntervention: Intervention;
 
-  apiGestionInterventions = 'http://localhost:8080/api/api_gestionIntervention.php';
+  apiGestionInterventions = 'http://localhost:8080/api/api_gestionInterventions.php';
 
   constructor(public httpClient: HttpClient) {
     this.listeInterventions = new Array<Intervention>();
@@ -17,8 +17,8 @@ export class InterventionService {
   }
 
   obtenirInterventionsAnimal(idAnimal: number) {
-    console.log(this.apiGestionInterventions + '?action=obtenirInterventionsDuClient&idClient=' + idAnimal);
-    return this.httpClient.get(this.apiGestionInterventions + '?action=obtenirInterventionsDuClient&idClient=' + idAnimal);
+    console.log(this.apiGestionInterventions + '?action=obtenirInterventionsAnimal&idAnimal=' + idAnimal);
+    return this.httpClient.get(this.apiGestionInterventions + '?action=obtenirInterventionsAnimal&idAnimal=' + idAnimal);
   }
 
   async ajouterIntervention(unIntervention: Intervention) {
