@@ -22,6 +22,7 @@ export class ListeInterventionsPage implements OnInit {
   unAnimal: Animal;
   unClient: Client;
   listeAnimalTemporaire: Array<Animal>;
+  listeClientTemporaire: Array<Client>; // doit etre utilisee pour parser la reponse
   listeInterventions: Array<Intervention>;
   listeTypeInterventions: Array<TypeIntervention>;
 
@@ -44,11 +45,14 @@ export class ListeInterventionsPage implements OnInit {
       this.unAnimal = this.listeAnimalTemporaire[0];
       console.log('recu le message');
       console.log(this.unAnimal);
+      this.clientService.obtenirClient(this.unAnimal.idClient).subscribe((response2) => {
+        this.listeClientTemporaire = response2 as Array<Client>;
+        this.unClient = this.listeClientTemporaire[0];
+        console.log('unclient');
+        console.log(this.unClient);
+      });
     });
 
-    this.clientService.obtenirClient(this.unAnimal.idClient).subscribe((response) => {
-      this.unClient = response as Array<Client>[0];
-    });
 
     this.typeInterventionService.obtenirListeTypeInterventions().subscribe((response) => {
       this.listeTypeInterventions = response as Array<TypeIntervention>;
@@ -79,9 +83,16 @@ export class ListeInterventionsPage implements OnInit {
     this.modal.present();
     this.modal.onDidDismiss().then(async retour => {
       if (retour.role === 'working') {
-        await this.interventionService.ajouterIntervention(retour.data);
-        await this.afficherToast('Ajout fait avec succès', 'primary');
-        await this.obtenirInterventionsAnimal(this.unAnimal.id);
+        const uneIntervention: Intervention = retour.data as Intervention;
+        console.log(uneIntervention.dateIntervention);
+        if(uneIntervention.idTypeIntervention !== 0 && uneIntervention.dateIntervention !== undefined) {
+          await this.interventionService.ajouterIntervention(retour.data);
+          await this.afficherToast('Ajout fait avec succès', 'primary');
+          await this.obtenirInterventionsAnimal(this.unAnimal.id);
+        }
+        else{
+          await this.afficherToast('Le type d\'intervention ou la date n\'est pas valide', 'danger');
+        }
       } else {
         await this.afficherToast('Ajout échoué', 'danger', 3000);
       }
