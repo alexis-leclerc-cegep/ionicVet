@@ -12,8 +12,8 @@
       <ion-item>
         <ion-label>Type</ion-label>
         <ion-select [(ngModel)]="unIntervention.idTypeIntervention" name="typeIntervention">
-          <ng-container *ngFor="let unTypeIntervention of listeTypeAnimaux">
-            <ion-select-option [value]="unTypeIntervention.id" name="test" ngDefaultControl >{{unTypeIntervention.animal}}</ion-select-option>
+          <ng-container *ngFor="let unTypeIntervention of listeTypeInterventions">
+            <ion-select-option [value]="unTypeIntervention.id" name="test" ngDefaultControl >{{unTypeIntervention.intervention}}</ion-select-option>
           </ng-container>
         </ion-select>
       </ion-item>
@@ -23,7 +23,7 @@
         <ion-datetime [(ngModel)]="dateIntervention"></ion-datetime>
       </ion-item>
     </ion-card-content>
-    <ion-button (click)="ajouterIntervention()">Ajouter l'animal</ion-button>
+    <ion-button (click)="ajouterIntervention()">Ajouter l'intervention</ion-button>
 
   </ion-card>
 

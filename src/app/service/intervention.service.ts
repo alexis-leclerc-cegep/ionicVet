@@ -22,8 +22,11 @@ export class InterventionService {
   }
 
   async ajouterIntervention(unIntervention: Intervention) {
+    console.log(this.apiGestionInterventions + '?action=ajouterIntervention' +
+       '&idTypeIntervention=' + unIntervention.idTypeIntervention + '&idAnimal='
+      + unIntervention.idAnimal + '&dateIntervention=' + unIntervention.dateIntervention);
     this.httpClient.get(this.apiGestionInterventions + '?action=ajouterIntervention&' +
-      + '&idTypeIntervention=' + unIntervention.idTypeIntervention + '&idAnimal='
+       'idTypeIntervention=' + unIntervention.idTypeIntervention + '&idAnimal='
       + unIntervention.idAnimal + '&dateIntervention=' + unIntervention.dateIntervention).subscribe(
       (response: any) => {
         if(response.reponse.includes('working')) {

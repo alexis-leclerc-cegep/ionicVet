@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ClientService } from '../service/client.service';
+import { Client } from '../model/client';
 import { Animal } from '../model/animal';
 import { Router } from '@angular/router';
 import { AnimalService } from '../service/animal.service';
@@ -18,12 +20,13 @@ import {AjouterInterventionPage} from '../modal/ajouter-intervention/ajouter-int
 export class ListeInterventionsPage implements OnInit {
   modal: any;
   unAnimal: Animal;
+  unClient: Client;
   listeAnimalTemporaire: Array<Animal>;
   listeInterventions: Array<Intervention>;
   listeTypeInterventions: Array<TypeIntervention>;
 
   constructor(public router: Router,
-              public clientService: AnimalService,
+              public clientService: ClientService,
               public typeInterventionService: TypeInterventionService,
               public animalService: AnimalService,
               public activatedRoute: ActivatedRoute,
@@ -43,10 +46,13 @@ export class ListeInterventionsPage implements OnInit {
       console.log(this.unAnimal);
     });
 
+    this.clientService.obtenirClient(this.unAnimal.idClient).subscribe((response) => {
+      this.unClient = response as Array<Client>[0];
+    });
+
     this.typeInterventionService.obtenirListeTypeInterventions().subscribe((response) => {
       this.listeTypeInterventions = response as Array<TypeIntervention>;
       console.log('liste type');
-      console.table(this.listeTypeInterventions);
     });
 
     this.interventionService.obtenirInterventionsAnimal(idAnimal).subscribe((response) => {
@@ -65,7 +71,6 @@ export class ListeInterventionsPage implements OnInit {
   }
 
   async appelerModalAjouterIntervention(){
-    console.table(this.listeTypeInterventions);
     this.modal = await this.modalController.create(
       {
         component: AjouterInterventionPage,
