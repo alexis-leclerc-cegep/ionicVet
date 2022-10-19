@@ -8,6 +8,7 @@ import { TypeAnimalService } from '../service/type-animal.service';
 import { AnimalService } from '../service/animal.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
+import { AlertController} from '@ionic/angular';
 import { AjouterAnimalPage} from '../modal/ajouter-animal/ajouter-animal.page';
 
 @Component({
@@ -27,6 +28,7 @@ export class ListeAnimauxPage implements OnInit {
               public typeAnimalService: TypeAnimalService,
               public animalService: AnimalService,
               public activatedRoute: ActivatedRoute,
+              public alertController: AlertController,
               public modalController: ModalController,
               public toastController: ToastController) {
     this.listeTypeAnimaux = new Array<TypeAnimal>();
@@ -86,8 +88,30 @@ export class ListeAnimauxPage implements OnInit {
   }
 
   async supprimerAnimal(unAnimal: Animal){
-    await this.animalService.supprimerAnimal(unAnimal);
-    await this.obtenirAnimauxDuClient(this.unClient.id);
+    const alert = await this.alertController.create({
+      header: 'Attention!',
+      message: 'Voulez-vous vraiment supprimer cet animal? Il peut avoir des interventions.',
+      buttons:[
+        {
+          text: 'Annuler',
+          role: 'annuler',
+          handler: () => {
+            console.log('Annuler');
+          }
+        },
+        {
+          text: 'Supprimer',
+          role: 'supprimer',
+          handler: () => {
+            this.animalService.supprimerAnimal(unAnimal);
+            this.obtenirAnimauxDuClient(this.unClient.id);
+            this.afficherToast('Suppression faite avec succès', 'primary');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   naviguerInterventions(unAnimal: Animal){
