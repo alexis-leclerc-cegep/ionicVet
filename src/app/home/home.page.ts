@@ -11,6 +11,7 @@ import { AjouterClientPage } from '../modal/ajouter-client/ajouter-client.page';
 import { ClientService } from '../service/client.service';
 import {ModifierClientPage} from '../modal/modifier-client/modifier-client.page';
 import {Router} from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomePage {
     public modalController: ModalController,
     public toastController: ToastController,
     public clientService: ClientService,
+    public alertController: AlertController,
     public router: Router) {
       this.listeClients = Array<Client>();
       this.obtenirLesClientsService();
@@ -54,7 +56,6 @@ export class HomePage {
         this.clientService.modifierClient(retour.data);
         this.afficherToast('Modification faite avec succès', 'primary');
         /*
-        setTimeout(() => {
           this.listeClients = this.clientService.obtenirLesClients();
         }, 1000);
         */
@@ -85,9 +86,30 @@ export class HomePage {
     });
   }
   async supprimerClient(unClient: Client) {
-    await this.clientService.supprimerClient(unClient);
-    await this.afficherToast('Suppression faite avec succès', 'primary');
-    window.location.reload();
+    const alert = await this.alertController.create({
+      header: 'Attention!',
+      message: 'Voulez-vous vraiment supprimer ce client? Il peut avoir des animaux et interventions d\'associées.',
+      buttons:[
+        {
+          text: 'Annuler',
+          role: 'annuler',
+          handler: () => {
+            console.log('Annuler');
+          }
+        },
+        {
+          text: 'Supprimer',
+          role: 'supprimer',
+          handler: () => {
+            this.clientService.supprimerClient(unClient);
+            this.obtenirLesClientsService();
+            this.afficherToast('Suppression faite avec succès', 'primary');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   async afficherToast(leMessage: string, laCouleur: string = 'primary', leTemps: number = 2000) {
