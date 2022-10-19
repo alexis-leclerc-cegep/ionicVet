@@ -73,9 +73,10 @@ export class ListeAnimauxPage implements OnInit {
     this.modal.present();
     this.modal.onDidDismiss().then(async retour => {
       if (retour.role === 'working') {
-        await this.animalService.ajouterAnimal(retour.data);
-        await this.afficherToast('Ajout fait avec succès', 'primary');
-        await this.obtenirAnimauxDuClient(this.unClient.id);
+        (await this.animalService.ajouterAnimal(retour.data)).subscribe((response) => {
+          this.afficherToast('Ajout fait avec succès', 'primary');
+          this.obtenirAnimauxDuClient(this.unClient.id);
+        });
       } else {
         await this.afficherToast('Ajout échoué', 'danger', 3000);
       }

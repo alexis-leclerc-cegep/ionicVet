@@ -22,23 +22,9 @@ export class AnimalService {
   }
 
   async ajouterAnimal(unAnimal: Animal) {
-    console.log(
-    this.apiGestionAnimaux + '?action=ajouterAnimal&nom=' + unAnimal.nom
+    return this.httpClient.get(this.apiGestionAnimaux + '?action=ajouterAnimal&nom=' + unAnimal.nom
       + '&idTypeAnimal=' + unAnimal.idTypeAnimal + '&idClient='
       + unAnimal.idClient + '&dateNaissance=' + unAnimal.dateNaissance);
-    this.httpClient.get(this.apiGestionAnimaux + '?action=ajouterAnimal&nom=' + unAnimal.nom
-      + '&idTypeAnimal=' + unAnimal.idTypeAnimal + '&idClient='
-      + unAnimal.idClient + '&dateNaissance=' + unAnimal.dateNaissance).subscribe(
-        (response: any) => {
-          if(response.reponse.includes('working')) {
-            console.log('animal ajoute');
-            return true;
-          } else{
-            return false;
-          }
-        }
-    );
-    return false;
   }
 
   async supprimerAnimal(unAnimal: Animal){

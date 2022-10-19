@@ -111,7 +111,7 @@ export class ListeInterventionsPage implements OnInit {
 
 
   retour(){
-    this.router.navigateByUrl('/home');
+    this.router.navigate(['/liste-animaux', {id: this.unClient.id}]);
   }
 
   ngOnInit() {
