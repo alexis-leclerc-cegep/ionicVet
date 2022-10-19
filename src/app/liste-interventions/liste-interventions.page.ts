@@ -105,8 +105,9 @@ export class ListeInterventionsPage implements OnInit {
   }
 
   async supprimerIntervention(unIntervention: Intervention){
-    await this.interventionService.supprimerIntervention(unIntervention);
-    await this.obtenirInterventionsAnimal(this.unAnimal.id);
+    (await this.interventionService.supprimerIntervention(unIntervention)).subscribe((response) => {
+      this.obtenirInterventionsAnimal(this.unAnimal.id);
+    });
   }
 
 
@@ -125,6 +126,4 @@ export class ListeInterventionsPage implements OnInit {
     const toast = await this.toastController.create({color: laCouleur, duration:leTemps, message: leMessage});
     await toast.present();
   }
-
-
 }

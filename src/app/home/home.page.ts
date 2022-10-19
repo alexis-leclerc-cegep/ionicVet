@@ -72,14 +72,13 @@ export class HomePage {
   async appelerModalAjouterClient() {
     this.modal = await this.modalController.create({component:AjouterClientPage});
     this.modal.present();
-    this.modal.onDidDismiss().then(retour => {
+    this.modal.onDidDismiss().then(async retour => {
       if (retour.role === 'working') {
-        this.clientService.ajouterClient(retour.data);
-        this.obtenirLesClientsService();
-        window.location.reload();
-        this.afficherToast('Ajout fait avec succès', 'primary');
-      }
-      else{
+        (await this.clientService.ajouterClient(retour.data)).subscribe((reponse) => {
+          this.obtenirLesClientsService();
+          this.afficherToast('Ajout fait avec succès', 'primary');
+        });
+      } else {
         this.afficherToast('Ajout échoué', 'danger', 3000);
       }
     });

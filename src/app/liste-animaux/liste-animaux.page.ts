@@ -53,8 +53,6 @@ export class ListeAnimauxPage implements OnInit {
       this.listeAnimaux = response as Array<Animal>;
       console.table(this.listeAnimaux);
     });
-    //this.obtenirAnimauxDuClient(idClient);
-
   }
 
   async obtenirAnimauxDuClient(idClient: number){

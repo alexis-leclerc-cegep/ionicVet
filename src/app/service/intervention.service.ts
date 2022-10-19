@@ -41,16 +41,6 @@ export class InterventionService {
   }
 
   async supprimerIntervention(unIntervention: Intervention){
-    this.httpClient.get(this.apiGestionInterventions + '?action=supprimerIntervention&id=' + unIntervention.id).subscribe(
-      (response: any) => {
-        console.log(response);
-        if(response.reponse.includes('working')) {
-          console.log('animal supprime');
-          return true;
-        } else{
-          return false;
-        }
-      }
-    );
+    return this.httpClient.get(this.apiGestionInterventions + '?action=supprimerIntervention&id=' + unIntervention.id);
   }
 }
