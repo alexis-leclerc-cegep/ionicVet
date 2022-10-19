@@ -42,7 +42,6 @@ export class HomePage {
   appelerListeAnimaux(unClient: Client){
     this.router.navigate(['/liste-animaux', {id: unClient.id}]);
   }
-  appelerAjouterAnimal(unClient: Client){}
 
   async appelerModalModifierClient(unClient: Client) {
     const clientModal: Client = unClient;
@@ -100,10 +99,11 @@ export class HomePage {
         {
           text: 'Supprimer',
           role: 'supprimer',
-          handler: () => {
-            this.clientService.supprimerClient(unClient);
-            this.obtenirLesClientsService();
-            this.afficherToast('Suppression faite avec succès', 'primary');
+          handler: async () => {
+            (await this.clientService.supprimerClient(unClient)).subscribe((reponse) => {
+              this.obtenirLesClientsService();
+              this.afficherToast('Suppression faite avec succès', 'primary');
+            });
           },
         },
       ],

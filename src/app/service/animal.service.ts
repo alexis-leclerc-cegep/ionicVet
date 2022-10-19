@@ -42,17 +42,7 @@ export class AnimalService {
   }
 
   async supprimerAnimal(unAnimal: Animal){
-    this.httpClient.get(this.apiGestionAnimaux + '?action=supprimerAnimal&id=' + unAnimal.id).subscribe(
-      (response: any) => {
-        console.log(response);
-        if(response.reponse.includes('working')) {
-          console.log('animal supprime');
-          return true;
-        } else{
-          return false;
-        }
-      }
-    );
+    return this.httpClient.get(this.apiGestionAnimaux + '?action=supprimerAnimal&id=' + unAnimal.id);
   }
 
 

@@ -102,10 +102,11 @@ export class ListeAnimauxPage implements OnInit {
         {
           text: 'Supprimer',
           role: 'supprimer',
-          handler: () => {
-            this.animalService.supprimerAnimal(unAnimal);
-            this.obtenirAnimauxDuClient(this.unClient.id);
-            this.afficherToast('Suppression faite avec succès', 'primary');
+          handler: async () => {
+            (await this.animalService.supprimerAnimal(unAnimal)).subscribe((response) => {
+              this.obtenirAnimauxDuClient(this.unClient.id);
+              this.afficherToast('Suppression faite avec succès', 'primary');
+            });
           },
         },
       ],

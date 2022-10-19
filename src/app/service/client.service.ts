@@ -74,17 +74,8 @@ export class ClientService {
   }
 
     async supprimerClient(unClient: Client) {
-      this.httpClient.get(this.apiGestionClients + '?action=supprimerClient&id=' + unClient.id).subscribe(
-        (response: any) => {
-          if (response.reponse.includes('working')) {
-            console.log('Le client a été supprimé');
-            return true;
-          } else {
-            console.log('Le client n\'a pas été supprimé');
-            return false;
-          }
-        });
-      };
+      return this.httpClient.get(this.apiGestionClients + '?action=supprimerClient&id=' + unClient.id);
+    }
 
     obtenirClient(id: number) {
       console.log(this.apiGestionClients + '?action=obtenirClient&id=' + id);
